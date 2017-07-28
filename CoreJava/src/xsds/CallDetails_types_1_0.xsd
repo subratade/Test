@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/calldetails/xsd/2009/04"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:calldetaildtns="http://soap.crmapi.util.redknee.com/calldetails/xsd/2009/04"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    
+    <xs:simpleType name="UsageTypeState">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Active -->
+            <xs:enumeration value="1"/><!-- Deprecated -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="VariableRateUnitType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Second -->
+            <xs:enumeration value="1"/><!-- Minute -->
+            <xs:enumeration value="2"/><!-- Message -->
+            <xs:enumeration value="3"/><!-- Kilobytes -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="CallType" type="calldetaildtns:CallType" />
+    <xs:complexType name="CallType">
+        <xs:complexContent>
+            <xs:extension base="calldetaildtns:CallTypeReference">
+                <xs:sequence>
+                    <xs:element name="invoiceDescription" nillable="true" minOccurs="0" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="CallTypeReference" type="calldetaildtns:CallTypeReference" />
+    <xs:complexType name="CallTypeReference">
+        <xs:sequence>
+            <xs:element name="glCode" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="UsageType" type="calldetaildtns:UsageType" />
+    <xs:complexType name="UsageType">
+        <xs:complexContent>
+            <xs:extension base="calldetaildtns:UsageTypeReference">
+                <xs:sequence>
+                    <xs:element name="invoiceDetailedDescription" nillable="true" minOccurs="0" type="xs:string" />
+                    <xs:element name="invoiceSummaryDescription" nillable="true" minOccurs="0" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="UsageTypeReference" type="calldetaildtns:UsageTypeReference" />
+    <xs:complexType name="UsageTypeReference">
+        <xs:sequence>
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="state" nillable="true" minOccurs="0" type="calldetaildtns:UsageTypeState" />
+            <xs:element name="vpn" nillable="true" minOccurs="0" type="xs:boolean" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:externalCreditCheckResult xmlns:tns="http://pcom.redknee.com/cc/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pcom.redknee.com/cc/v1 NewXMLSchema.xsd ">
+  <resultCode>0</resultCode>
+  <resultMessage>resultMessage</resultMessage>
+  <creditScoreDetail>
+    <score>score</score>
+    <description>description</description>
+    <parameters>
+      <parameter>
+        <key>key</key>
+        <value/>
+      </parameter>
+    </parameters>
+  </creditScoreDetail>
+  <creditCategory>creditCategory</creditCategory>
+</tns:externalCreditCheckResult>

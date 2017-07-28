@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+    targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.3"
+    xmlns:tns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.3" 
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" 
+    xmlns:subscriptiondtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/11" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <wsdl:documentation>Subscriptions API 1.3 for CRMAPI Version 2.3 on November 11th, 2010</wsdl:documentation>
+
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.3">
+
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/11" schemaLocation="Subscriptions_types_1_3.xsd" />
+
+            
+        </xs:schema>
+    </wsdl:types>
+
+</wsdl:definitions>

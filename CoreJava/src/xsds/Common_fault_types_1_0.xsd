@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified" elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:crmapi_faults="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    
+    <xs:element name="CRMException" type="crmapi_faults:CRMException" />
+    <xs:complexType name="CRMException">
+        <xs:sequence>
+            <xs:element name="code" default="0" type="xs:long" />
+            <xs:element name="message" nillable="true" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="CompoundException" type="crmapi_faults:CompoundException" />
+    <xs:complexType name="CompoundException">
+        <xs:complexContent>
+            <xs:extension base="crmapi_faults:CRMException">
+                <xs:sequence>
+                    <xs:element name="code" default="2" type="xs:long" />
+                    <xs:element maxOccurs="unbounded" name="compoundEntries" nillable="true" type="crmapi_faults:CRMException" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="DataCreationException" type="crmapi_faults:DataCreationException" />
+    <xs:complexType name="DataCreationException">
+        <xs:complexContent>
+            <xs:extension base="crmapi_faults:CRMException">
+                <xs:sequence>
+                    <xs:element name="code" default="16" type="xs:long" />
+                    <xs:element name="profileCreated" type="xs:boolean" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="DataDeletionException" type="crmapi_faults:DataDeletionException" />
+    <xs:complexType name="DataDeletionException">
+        <xs:complexContent>
+            <xs:extension base="crmapi_faults:CRMException">
+                <xs:sequence>
+                    <xs:element name="code" default="17" type="xs:long" />
+                    <xs:element name="profileDeleted" type="xs:boolean" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="DataStoreException" type="crmapi_faults:DataStoreException" />
+    <xs:complexType name="DataStoreException">
+        <xs:complexContent>
+            <xs:extension base="crmapi_faults:CRMException">
+                <xs:sequence>
+                    <xs:element name="code" default="3" type="xs:long" />
+                    <xs:element name="profileStored" type="xs:boolean" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="ValidationException" type="crmapi_faults:ValidationException" />
+    <xs:complexType name="ValidationException">
+        <xs:complexContent>
+            <xs:extension base="crmapi_faults:CRMException">
+                <xs:sequence>
+                    <xs:element name="code" default="14" type="xs:long" />
+                    <xs:element maxOccurs="unbounded" name="entries" nillable="true" type="crmapi_faults:ValidationExceptionEntry" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="ValidationExceptionEntry" type="crmapi_faults:ValidationExceptionEntry" />
+    <xs:complexType name="ValidationExceptionEntry">
+        <xs:sequence>
+            <xs:element name="explanation" nillable="true" type="xs:string" />
+            <xs:element name="name" nillable="true" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ThrottlingException" type="crmapi_faults:ThrottlingException" />
+    <xs:complexType name="ThrottlingException">
+        <xs:complexContent>
+            <xs:extension base="crmapi_faults:CRMException">
+                <xs:sequence>
+                    <xs:element name="code" default="26" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="ShutdownException" type="crmapi_faults:ShutdownException" />
+    <xs:complexType name="ShutdownException">
+        <xs:complexContent>
+            <xs:extension base="crmapi_faults:CRMException">
+                <xs:sequence>
+                    <xs:element name="code" default="27" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

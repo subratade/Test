@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:cardpackagedtns="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    
+    <xs:simpleType name="CardPackageState">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="1"/><!-- Available -->
+            <xs:enumeration value="2"/><!-- In Use -->
+            <xs:enumeration value="3"/><!-- Held -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="CardPackage" type="cardpackagedtns:CardPackage" />
+    <xs:complexType name="CardPackage">
+        <xs:complexContent>
+            <xs:extension base="cardpackagedtns:CardPackageReference">
+                <xs:sequence>
+                    <xs:element name="dealer" type="xs:string" />
+                    <xs:element name="esn" nillable="true" minOccurs="0" type="xs:string" />
+                    <xs:element name="imsi" nillable="true" minOccurs="0" type="xs:string" />
+                    <xs:element name="lastModified" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="min" nillable="true" minOccurs="0" type="xs:string" />
+                    <xs:element name="serialNumber" nillable="true" minOccurs="0" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="CardPackageReference" type="cardpackagedtns:CardPackageReference" />
+    <xs:complexType name="CardPackageReference">
+        <xs:sequence>
+            <xs:element name="identifier" type="xs:string" />
+            <xs:element name="packageGroupID" type="xs:string" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="state" nillable="true" minOccurs="0" type="cardpackagedtns:CardPackageState" />
+            <xs:element name="technology" nillable="true" minOccurs="0" type="dtns:TechnologyType" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="CardPackageQueryResult" type="cardpackagedtns:CardPackageQueryResult" />
+    <xs:complexType name="CardPackageQueryResult">
+        <xs:sequence>
+            <xs:element name="pageKey" minOccurs="0" type="xs:string" />
+            <xs:element maxOccurs="unbounded" name="references" nillable="true" minOccurs="0" type="cardpackagedtns:CardPackageReference" />
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>

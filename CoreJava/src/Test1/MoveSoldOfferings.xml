@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:moveSoldOffering xmlns:tns="http://pcom.redknee.com/om/itemType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pcom.redknee.com/om/itemType MoveSoldOfferings.xsd ">
+  <balanceCarryOver>false</balanceCarryOver>
+  <newAccountId>0</newAccountId>
+  <newSubscriptionIdentifier>newSubscriptionIdentifier</newSubscriptionIdentifier>
+  <moveReferenceId>0</moveReferenceId>
+</tns:moveSoldOffering>

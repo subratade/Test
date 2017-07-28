@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+    targetNamespace="http://soap.crmapi.util.redknee.com/common/xsd/Common-v2.0" 
+    xmlns:tns="http://soap.crmapi.util.redknee.com/common/xsd/Common-v2.0" 
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2011/05" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <wsdl:documentation>Common API for CRMAPI Version 3.0 on November 17th, 2011</wsdl:documentation>
+
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+            targetNamespace="http://soap.crmapi.util.redknee.com/common/xsd/Common-v2.0">
+            
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2011/05" schemaLocation="Common_types_2_0.xsd" />
+           
+            <xs:element name="executeResultResponse" type="tns:executeResultResponse" />
+            <xs:complexType name="executeResultResponse">
+                <xs:sequence>
+                    <xs:element name="result" type="dtns:ExecuteResult" />
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="executeResultResponse">
+        <wsdl:part element="tns:executeResultResponse" name="part1" />
+    </wsdl:message>
+
+</wsdl:definitions>

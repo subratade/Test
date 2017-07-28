@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pcom.redknee.com/om/itemType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pcom.redknee.com/om/itemType">
+	<element name="moveSoldOffering" type="tns:moveSoldOffering">
+		<annotation>
+			<documentation>The order data for the resumeSubscription order item type.</documentation>
+		</annotation>
+	</element>	
+	<complexType name="moveSoldOffering">
+		<annotation>
+			<documentation>The order data for the MoveSoldOffering order item type.</documentation>
+		</annotation>
+		<sequence>
+			<element name="balanceCarryOver" type="xsd:boolean" default="false" minOccurs="0">
+				<annotation>
+					<documentation>Indicates if balances of the old subscription shall be moved to the newly created subscription. Currently the value from the order input is ignored/RFU. For postpaid balances are not carried over; for prepaid balances are carried over by default.</documentation>
+				</annotation>
+			</element>
+			<!-- oldBAN is already present in generic order data of OrderIO: customer/accountId -->
+			<element name="newAccountId" type="xsd:long">
+				<annotation>
+					<documentation>New account ID (BAN) to which the subscription is morved.</documentation>
+				</annotation>
+			</element>
+			<!-- oldSubscriberID is already present in generic order item data of OrderIO: items/item/subscriptionIdentifier -->
+			<element name="newSubscriptionIdentifier" type="xsd:string" minOccurs="0">
+				<annotation>
+					<documentation>New subscriptionIdentifier is not allowed in the order input, but provided in the assetization once the order execution has been completed.</documentation>
+				</annotation>
+			</element>
+			<element name="moveReferenceId" type="xsd:long" minOccurs="0">
+				<annotation>
+					<documentation>TBD</documentation>
+				</annotation>
+			</element>
+			<!-- purpose is unclear for me -->
+		</sequence>
+	</complexType>
+</schema>

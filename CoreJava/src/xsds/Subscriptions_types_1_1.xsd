@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:subscriptiondtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    
+    <xs:simpleType name="SubscriptionState">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Pending -->
+            <xs:enumeration value="1"/><!-- Active -->
+            <xs:enumeration value="2"/><!-- Inactive -->
+            <xs:enumeration value="3"/><!-- Suspended -->
+            <xs:enumeration value="4"/><!-- Moved -->
+            <xs:enumeration value="5"/><!-- Locked -->
+            <xs:enumeration value="6"/><!-- Expired -->
+            <xs:enumeration value="7"/><!-- Available -->
+            <xs:enumeration value="8"/><!-- Warned -->
+            <xs:enumeration value="9"/><!-- Suspended -->
+            <xs:enumeration value="10"/><!-- Promise to Pay -->
+            <xs:enumeration value="11"/><!-- In Arrears -->
+            <xs:enumeration value="12"/><!-- In Collection -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="BillingOptionType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Summary -->
+            <xs:enumeration value="1"/><!-- Intermediate -->
+            <xs:enumeration value="2"/><!-- Detailed -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="SubscriptionCreationTemplateReference" type="subscriptiondtns:SubscriptionCreationTemplateReference" />
+    <xs:complexType name="SubscriptionCreationTemplateReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="subscriptionClass" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="technologyType" nillable="true" minOccurs="0" type="dtns:TechnologyType" />
+            <xs:element name="poolLimitStrategy" nillable="true" minOccurs="0" type="dtns:PoolLimitStrategy" />
+            <xs:element name="poolLimit" nillable="true" minOccurs="0" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="SubscriptionClassReference" type="subscriptiondtns:SubscriptionClassReference" />
+    <xs:complexType name="SubscriptionClassReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="subscriptionType" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="technologyType" nillable="true" minOccurs="0" type="dtns:TechnologyType" />
+            <xs:element name="systemType" nillable="true" minOccurs="0" type="dtns:SystemType" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="SubscriptionLevelReference" type="subscriptiondtns:SubscriptionLevelReference" />
+    <xs:complexType name="SubscriptionLevelReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="SubscriptionTypeReference" type="subscriptiondtns:SubscriptionTypeReference" />
+    <xs:complexType name="SubscriptionTypeReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="type" nillable="true" minOccurs="0" type="xs:int" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="ReadOnlySubscriptionStatus" type="subscriptiondtns:ReadOnlySubscriptionStatus" />
+    <xs:complexType name="ReadOnlySubscriptionStatus">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:SubscriptionStatus">
+                <xs:sequence>
+                    <xs:element name="endDate" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="expiryDate" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="startDate" nillable="true" minOccurs="0" type="xs:dateTime" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="SubscriptionStatus" type="subscriptiondtns:SubscriptionStatus" />
+    <xs:complexType name="SubscriptionStatus">
+        <xs:sequence>
+            <xs:element name="state" type="subscriptiondtns:SubscriptionState" />
+        </xs:sequence>
+    </xs:complexType>
+   
+    
+    <xs:element name="ReadOnlySubscriptionBilling" type="subscriptiondtns:ReadOnlySubscriptionBilling" />
+    <xs:complexType name="ReadOnlySubscriptionBilling">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:SubscriptionBilling">
+                <xs:sequence>
+                    <xs:element name="depositDate" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="nextDepositReleaseDate" nillable="true" minOccurs="0" type="xs:dateTime" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="SubscriptionBilling" type="subscriptiondtns:SubscriptionBilling" />
+    <xs:complexType name="SubscriptionBilling">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:MutableSubscriptionBilling">
+                <xs:sequence>
+                    <xs:element name="creditLimit" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="deposit" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="initialBalance" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="initialExpiryDateExtension" nillable="true" minOccurs="0" type="xs:int" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="MutableSubscriptionBilling" type="subscriptiondtns:MutableSubscriptionBilling" />
+    <xs:complexType name="MutableSubscriptionBilling">
+        <xs:sequence>
+            <xs:element name="billingLanguage" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="billingOption" nillable="true" minOccurs="0" type="subscriptiondtns:BillingOptionType" />
+            <xs:element name="category" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="chargeToPostpaid" nillable="true" minOccurs="0" type="xs:boolean" />
+            <xs:element name="discountClass" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="maximumBalance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="maximumRecharge" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="postpaidSupport" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="reactivationFee" nillable="true" minOccurs="0" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="SubscriptionBundleBalance" type="subscriptiondtns:SubscriptionBundleBalance" />
+    <xs:complexType name="SubscriptionBundleBalance">
+        <xs:sequence>
+            <xs:element name="bundleCategoryId" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="personalLimit" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="personalUsed" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="personalBalance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="rolloverLimit" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="rolloverUsed" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="rolloverBalance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="groupLimit" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="groupUsed" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="groupBalance" nillable="true" minOccurs="0" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    
+    <!-- UMP-5263 -->
+     <xs:element name="ListSubscriptionBundleBalance" type="subscriptiondtns:ListSubscriptionBundleBalance" />
+    <xs:complexType name="ListSubscriptionBundleBalance">
+        <xs:sequence>
+            <xs:element name="bundleCategoryId" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="personalLimit" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="personalUsed" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="personalBalance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="rolloverLimit" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="rolloverUsed" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="rolloverBalance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="groupLimit" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="groupUsed" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="groupBalance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtns:GenericParameter" />
+        </xs:sequence>
+    </xs:complexType>
+   <!-- UMP-5263 --> 
+    
+    
+</xs:schema>

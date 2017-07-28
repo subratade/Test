@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://pcom.redknee.com/om/itemType"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pcom.redknee.com/om/itemType"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<element name="prepaidToPostpaid" type="tns:prepaidToPostpaid">
+		<annotation>
+			<documentation>The order data for the prepaidToPostpaid order item type.</documentation>
+		</annotation>
+	</element>
+	<complexType name="prepaidToPostpaid">
+		<annotation>
+			<documentation>The order data for the prepaidToPostpaid order item	type.</documentation>
+		</annotation>
+		<sequence>		
+		<element name="moveSoldOffering" type="tns:moveSoldOffering">
+			<annotation>
+				<documentation>The order data for the resumeSubscription order item type.</documentation>
+			</annotation>
+		</element>
+		<element name="modifySoldOffering" type="tns:modifySoldOffering">
+			<annotation>
+				<documentation>The order data for the resumeSubscription order item type.</documentation>
+			</annotation>
+		</element>		
+		</sequence>
+	</complexType>
+	<complexType name="moveSoldOffering">
+		<annotation>
+			<documentation>The order data for the resumeSubscription order item	type.</documentation>
+		</annotation>
+		<sequence>
+			<element name="spid"  minOccurs="0" type="xsd:int" />
+           	<element name="balanceCarryOver"  minOccurs="0" default="false" type="xsd:boolean" />
+           	<element name="moveRequest" minOccurs="0" type="tns:ExclusiveSubscriptionMoveRequest" />
+		</sequence>
+	</complexType>
+	<complexType name="modifySoldOffering">
+		<annotation>
+			<documentation>The order data for the resumeSubscription order item	type.</documentation>
+		</annotation>
+		<sequence>
+			<element name="subscriptionRef" type="tns:SubscriptionReference" />           	
+            <element name="deposit" minOccurs="0" type="xsd:long" />
+            <element name="creditLimit" minOccurs="0" type="xsd:long" />
+            <element name="options" type="tns:SubscriptionPricePlan" />
+		</sequence>
+	</complexType>
+	
+	
+	<complexType name="ExclusiveSubscriptionMoveRequest">
+		<sequence>
+			<element name="oldBAN"  minOccurs="0" type="xsd:string" />
+			<element name="newBAN"  minOccurs="0" type="xsd:string" />
+			<element name="oldSubscriberID"  minOccurs="0" type="xsd:string" />
+			<element name="newSubscriberID"  minOccurs="0" type="xsd:string" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="SubscriptionReference">
+        <sequence>
+            <element name="accountID" minOccurs="0" type="xsd:string" />
+            <element name="identifier"  minOccurs="0" type="xsd:string" />
+            <element name="mobileNumber"  minOccurs="0" type="xsd:string" />
+            <element name="mobileNumberOwnership"  minOccurs="0" type="xsd:dateTime" />
+            <element name="subscriptionType"  minOccurs="0" type="xsd:int" />
+            <element name="state"  minOccurs="0" type="tns:SubscriptionState" />
+        </sequence>
+    </complexType>
+    
+     <complexType name="SubscriptionPricePlan">
+        <sequence>
+            <element name="isSelected" type="xsd:boolean" />
+            <!-- <element name="pricePlanDetails"  minOccurs="0" type="serviceandbundledtns:PricePlan" />
+            <element name="items"  minOccurs="0" maxOccurs="unbounded" type="serviceandbundledtns:PricePlanOption" /> -->
+        </sequence>
+    </complexType>
+    
+     <simpleType name="SubscriptionState">
+        <restriction base="xsd:long">
+            <enumeration value="0"/><!-- Pending -->
+            <enumeration value="1"/><!-- Active -->
+            <enumeration value="2"/><!-- Inactive -->
+            <enumeration value="3"/><!-- Suspended -->
+            <enumeration value="4"/><!-- Moved -->
+            <enumeration value="5"/><!-- Locked -->
+            <enumeration value="6"/><!-- Expired -->
+            <enumeration value="7"/><!-- Available -->
+            <enumeration value="8"/><!-- Warned -->
+            <enumeration value="9"/><!-- Suspended -->
+            <enumeration value="10"/><!-- Promise to Pay -->
+            <enumeration value="11"/><!-- In Arrears-->
+            <enumeration value="12"/><!-- In Collection -->
+        </restriction>
+    </simpleType>
+</schema>

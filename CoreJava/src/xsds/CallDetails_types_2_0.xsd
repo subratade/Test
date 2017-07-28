@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/calldetails/xsd/2011/03"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:calldetaildtns="http://soap.crmapi.util.redknee.com/calldetails/xsd/2011/03"
+    xmlns:calldetailv1_0dtns="http://soap.crmapi.util.redknee.com/calldetails/xsd/2009/04"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:servicesandbundlestns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2011/01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/calldetails/xsd/2009/04" schemaLocation="CallDetails_types_1_0.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2011/01" schemaLocation="ServicesAndBundles_types_2_0.xsd" />
+    
+    <xs:element name="CallDetail" type="calldetaildtns:CallDetail" />
+    <xs:complexType name="CallDetail">
+        <xs:complexContent>
+            <xs:extension base="calldetaildtns:CallDetailReference">
+                <xs:sequence>
+                    <xs:element name="billingCategoryID" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="bucketRateID" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="flatRate" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="glCode" nillable="true" minOccurs="0" type="xs:string" />
+                    <xs:element name="postedDate" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="primaryTaxAuthorityID" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="ratePlan" nillable="true" minOccurs="0" type="xs:string" />
+                    <xs:element name="ratingRule" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="secondaryTaxAuthorityID" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="subscriberType" nillable="true" minOccurs="0" type="dtns:PaidType" />
+                    <xs:element name="usedBucketMinutes" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="variableRate" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="variableRateUnits" nillable="true" minOccurs="0" type="calldetailv1_0dtns:VariableRateUnitType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="CallDetailReference" type="calldetaildtns:CallDetailReference" />
+    <xs:complexType name="CallDetailReference">
+        <xs:sequence>
+            <xs:element name="accountID" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="balance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="callType" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="charge" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="dataUsage" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="destinationLocation" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="destinationNumber" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="duration" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="mobileNumber" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="originatingLocation" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="originatingNumber" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="transactionDate" nillable="true" minOccurs="0" type="xs:dateTime" />
+            <xs:element name="usageType" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtns:GenericParameter" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="CallDetailQueryResponse" type="calldetaildtns:CallDetailQueryResponse" />
+    <xs:complexType name="CallDetailQueryResponse">
+        <xs:sequence>
+            <xs:element name="pageKey" minOccurs="0" type="xs:string" />
+            <xs:element maxOccurs="unbounded" name="references" nillable="true" minOccurs="0" type="calldetaildtns:CallDetailReference" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="DetailedCallDetailQueryResponse" type="calldetaildtns:DetailedCallDetailQueryResponse" />
+    <xs:complexType name="DetailedCallDetailQueryResponse">
+        <xs:sequence>
+            <xs:element name="pageKey" minOccurs="0" type="xs:string" />
+            <xs:element name="results" nillable="true" minOccurs="0" maxOccurs="unbounded" type="calldetaildtns:CallDetail" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="ChargedBundleInfo" type="calldetaildtns:ChargedBundleInfo" />
+    <xs:complexType name="ChargedBundleInfo">
+        <xs:sequence>
+            <xs:element name="bundleId" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="unitType" nillable="true" minOccurs="0" type="servicesandbundlestns:BundleType" />
+            <xs:element name="chargedAmount" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="balance" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="bundleCategoryId" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="bundleCategoryDesc" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtns:GenericParameter" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="CallDetailWithBundles" type="calldetaildtns:CallDetailWithBundles" />
+    <xs:complexType name="CallDetailWithBundles">
+        <xs:complexContent>
+            <xs:extension base="calldetaildtns:CallDetail">
+                <xs:sequence>
+                    <xs:element name="bundleInfo" nillable="true" minOccurs="0" maxOccurs="unbounded" type="calldetaildtns:ChargedBundleInfo" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="DetailedCallDetailWithBundlesQueryResponse" type="calldetaildtns:DetailedCallDetailWithBundlesQueryResponse" />
+    <xs:complexType name="DetailedCallDetailWithBundlesQueryResponse">
+        <xs:sequence>
+            <xs:element name="pageKey" minOccurs="0" type="xs:string" />
+            <xs:element name="results" nillable="true" minOccurs="0" maxOccurs="unbounded" type="calldetaildtns:CallDetailWithBundles" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

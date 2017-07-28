@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:prepaidToPostpaid xmlns:tns="http://pcom.redknee.com/om/itemType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pcom.redknee.com/om/itemType PrepaidToPostpaid.xsd ">
+  <moveSoldOffering>
+    <spid>0</spid>
+    <balanceCarryOver>false</balanceCarryOver>
+    <moveRequest>
+      <oldBAN>oldBAN</oldBAN>
+      <newBAN>newBAN</newBAN>
+      <oldSubscriberID>oldSubscriberID</oldSubscriberID>
+      <newSubscriberID>newSubscriberID</newSubscriberID>
+    </moveRequest>
+  </moveSoldOffering>
+  <modifySoldOffering>
+    <subscriptionRef>
+      <accountID>accountID</accountID>
+      <identifier>identifier</identifier>
+      <mobileNumber>mobileNumber</mobileNumber>
+      <mobileNumberOwnership>2001-12-31T12:00:00</mobileNumberOwnership>
+      <subscriptionType>0</subscriptionType>
+      <state>0</state>
+    </subscriptionRef>
+    <deposit>0</deposit>
+    <creditLimit>0</creditLimit>
+    <options>
+      <isSelected>true</isSelected>
+    </options>
+  </modifySoldOffering>
+</tns:prepaidToPostpaid>

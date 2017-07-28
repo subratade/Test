@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2010/06"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:serviceandbundledtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2010/06"
+    xmlns:serviceandbundlev1_0dtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04" schemaLocation="ServicesAndBundles_types_1_0.xsd" />
+    
+    <xs:simpleType name="PricePlanOptionStateType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>Active</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Deprecated</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Closed</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="PricePlanOptionUpdateType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>Add</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Remove</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>No Update</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="RecurrenceType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Recurring</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>One Time</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="CallingGroupType" type="serviceandbundledtns:CallingGroupType" />
+    <xs:simpleType name="CallingGroupType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>PLP</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>CUG</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Birthday Plan</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>PCUG</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="PricePlanOptionUpdateResult" type="serviceandbundledtns:PricePlanOptionUpdateResult" />
+    <xs:complexType name="PricePlanOptionUpdateResult">
+        <xs:sequence>
+            <xs:element name="updateType" nillable="true" minOccurs="0" type="serviceandbundledtns:PricePlanOptionUpdateType" />
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="optionType" nillable="true" minOccurs="0" type="serviceandbundlev1_0dtns:PricePlanOptionType" />
+            <xs:element name="isSelected" nillable="true" minOccurs="0" type="xs:boolean" />
+            <xs:element name="startDate" nillable="true" minOccurs="0" type="xs:date" />
+            <xs:element name="endDate" nillable="true" minOccurs="0" type="xs:date" />
+            <xs:element name="appliedFee" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="provisioningState" nillable="true" minOccurs="0" type="dtns:ProvisioningStateType" />
+            <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtns:GenericParameter" />
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>

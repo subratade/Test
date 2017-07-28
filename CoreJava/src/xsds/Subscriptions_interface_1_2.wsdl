@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+    targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.2"
+    xmlns:tns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.2" 
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" 
+    xmlns:subscriptiondtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06" 
+    xmlns:subscriptionextdtns="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2011/04"
+    xmlns:subscriptionextv1_0dtns="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06"
+    xmlns:subscriptionv1_1dtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" 
+    xmlns:cardpackagedtns="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04" 
+    xmlns:serviceandbundlev1_0dtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04" 
+    xmlns:serviceandbundledtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2010/06" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <wsdl:documentation>Subscriptions API 1.2 for CRMAPI Version 2.2 on June 1st, 2010</wsdl:documentation>
+
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.2">
+
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" schemaLocation="Subscriptions_types_1_1.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06" schemaLocation="Subscriptions_types_1_2.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06" schemaLocation="SubscriptionExtensions_types_1_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2011/04" schemaLocation="SubscriptionExtensions_types_2_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04" schemaLocation="CardPackages_types_1_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04" schemaLocation="ServicesAndBundles_types_1_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2010/06" schemaLocation="ServicesAndBundles_types_1_1.xsd" />
+
+
+            <xs:element name="getSubscriptionBalanceResponse" type="tns:getSubscriptionBalanceResponse" />
+            <xs:complexType name="getSubscriptionBalanceResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionBalance" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionBundleBalancesResponse" type="tns:getSubscriptionBundleBalancesResponse" />
+            <xs:complexType name="getSubscriptionBundleBalancesResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:ReadOnlySubscriptionBundle" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionPromotionStatusResponse" type="tns:getSubscriptionPromotionStatusResponse" />
+            <xs:complexType name="getSubscriptionPromotionStatusResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:PromotionStatus" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionPricePlanOptionsResponse" type="tns:updateSubscriptionPricePlanOptionsResponse" />
+            <xs:complexType name="updateSubscriptionPricePlanOptionsResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="serviceandbundledtns:PricePlanOptionUpdateResult" />
+                </xs:sequence>
+            </xs:complexType>
+            
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getSubscriptionBalanceResponse">
+        <wsdl:part element="tns:getSubscriptionBalanceResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="getSubscriptionBundleBalancesResponse">
+        <wsdl:part element="tns:getSubscriptionBundleBalancesResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="getSubscriptionPromotionStatusResponse">
+        <wsdl:part element="tns:getSubscriptionPromotionStatusResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateSubscriptionPricePlanOptionsResponse">
+        <wsdl:part element="tns:updateSubscriptionPricePlanOptionsResponse" name="part1" />
+    </wsdl:message>
+
+</wsdl:definitions>

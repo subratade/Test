@@ -1,0 +1,6 @@
+
+/**
+ * @author SuDe
+ *
+ */
+package collection;

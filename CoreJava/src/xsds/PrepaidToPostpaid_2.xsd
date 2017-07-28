@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://pcom.redknee.com/om/itemType"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pcom.redknee.com/om/itemType"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<element name="prepaidToPostpaid" type="tns:prepaidToPostpaid">
+		<annotation>
+			<documentation>The order data for the prepaidToPostpaid order item type.</documentation>
+		</annotation>
+	</element>
+	<complexType name="prepaidToPostpaid">
+		<annotation>
+			<documentation>The order data for the prepaidToPostpaid order item	type.</documentation>
+		</annotation>
+		<sequence>
+			<element name="spid"  minOccurs="0" type="xsd:int" />
+			<element name="prepareMoveSubscription" minOccurs="0" type="tns:prepareMoveSubscription" /> 
+			<element name="completeMoveSubscription" minOccurs="0" type="tns:completeMoveSubscription" /> 
+			<element name="updateSubscriptionConvertPaidTypeToPostpaid" minOccurs="0" type="tns:updateSubscriptionConvertPaidTypeToPostpaid" /> 
+			<element name="offering" type="tns:offeringIO" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="prepareMoveSubscription">
+		<sequence>
+			<element name="balanceCarryOver"  minOccurs="0" default="false" type="xsd:boolean" />
+			<element name="moveRequest" minOccurs="0" type="tns:ExclusiveSubscriptionMoveRequest" />  
+		</sequence>
+	</complexType>
+	
+	<complexType name="completeMoveSubscription">
+		<sequence>
+			<element name="moveReferenceId"  minOccurs="0" type="xsd:long" />
+			<element name="moveRequest" minOccurs="0" type="tns:ExclusiveSubscriptionMoveRequest" />  
+		</sequence>
+	</complexType>
+	
+	<complexType name="updateSubscriptionConvertPaidTypeToPostpaid">
+		<sequence>
+			<element name="subscriptionRef" type="tns:SubscriptionReference" />           	
+            <element name="deposit" minOccurs="0" type="xsd:long" />
+            <element name="creditLimit" minOccurs="0" type="xsd:long" />
+            <element name="options" type="tns:SubscriptionPricePlan" />  
+		</sequence>
+	</complexType>
+	
+	<complexType name="ExclusiveSubscriptionMoveRequest">
+		<sequence>
+			<element name="oldBAN"  minOccurs="0" type="xsd:string" />
+			<element name="newBAN"  minOccurs="0" type="xsd:string" />
+			<element name="oldSubscriberID"  minOccurs="0" type="xsd:string" />
+			<element name="newSubscriberID"  minOccurs="0" type="xsd:string" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="SubscriptionReference">
+        <sequence>
+            <element name="accountID" minOccurs="0" type="xsd:string" />
+            <element name="identifier"  minOccurs="0" type="xsd:string" />
+            <element name="mobileNumber"  minOccurs="0" type="xsd:string" />
+            <element name="mobileNumberOwnership"  minOccurs="0" type="xsd:dateTime" />
+            <element name="subscriptionType"  minOccurs="0" type="xsd:int" />
+            <element name="state"  minOccurs="0" type="tns:SubscriptionState" />
+        </sequence>
+    </complexType>
+    
+     <complexType name="SubscriptionPricePlan">
+        <sequence>
+            <element name="isSelected" type="xsd:boolean" />
+            <!-- <element name="pricePlanDetails"  minOccurs="0" type="serviceandbundledtns:PricePlan" />
+            <element name="items"  minOccurs="0" maxOccurs="unbounded" type="serviceandbundledtns:PricePlanOption" /> -->
+        </sequence>
+    </complexType>
+    
+    <simpleType name="SubscriptionState">
+        <restriction base="xsd:long">
+            <enumeration value="0"/><!-- Pending -->
+            <enumeration value="1"/><!-- Active -->
+            <enumeration value="2"/><!-- Inactive -->
+            <enumeration value="3"/><!-- Suspended -->
+            <enumeration value="4"/><!-- Moved -->
+            <enumeration value="5"/><!-- Locked -->
+            <enumeration value="6"/><!-- Expired -->
+            <enumeration value="7"/><!-- Available -->
+            <enumeration value="8"/><!-- Warned -->
+            <enumeration value="9"/><!-- Suspended -->
+            <enumeration value="10"/><!-- Promise to Pay -->
+            <enumeration value="11"/><!-- In Arrears-->
+            <enumeration value="12"/><!-- In Collection -->
+        </restriction>
+    </simpleType>
+    
+    <complexType name="offeringIO">
+                        <annotation>
+                           <documentation>The order data for the
+                                                                SellProductToExistingCustomerUnderNewContract order type.</documentation>
+                        </annotation>
+                        <sequence>
+                           <element name="offeringInstance" type="tns:offeringInstanceIO">
+                              <annotation>
+                                 <documentation>The offering being part of the agreement item.</documentation>
+                              </annotation>
+                           </element>
+                        </sequence>
+                     </complexType>
+                     <complexType name="baseIO">
+                        <annotation>
+                           <documentation>Basic attribute data with a reference to a product
+                                                                catalog entity.</documentation>
+                        </annotation>
+                        <attribute name="businessKey" type="xsd:string" use="optional">
+                           <annotation>
+                              <documentation>The business key of the referenced product catalog
+                                                                                entity.</documentation>
+                           </annotation>
+                        </attribute>
+                        <attribute name="name" type="xsd:string" use="required">
+                           <annotation>
+                              <documentation>The name of the referenced product catalog entity.</documentation>
+                           </annotation>
+                        </attribute>
+                        <!--check required-->
+                     </complexType>
+                     <attributeGroup name="baseGroup">
+                        <annotation>
+                           <documentation>Basic attributes with a reference to a product catalog
+                                                                entity.</documentation>
+                        </annotation>
+                        <attribute name="businessKey" type="xsd:string" use="required">
+                           <annotation>
+                              <documentation>The business key of the referenced product catalog
+                                                                                entity.</documentation>
+                           </annotation>
+                        </attribute>
+                        <attribute name="name" type="xsd:string" use="optional">
+                           <annotation>
+                              <documentation>The name of the referenced product catalog entity.</documentation>
+                           </annotation>
+                        </attribute>
+                     </attributeGroup>
+                     <complexType name="resourceDataIO">
+                        <annotation>
+                           <documentation>Used for provide/modify the characteristics value of
+                                                                the Product underneath business
+                                                                entity(Resource/Technical
+                                                                Service/Product Service) , time of order capture from Sells
+                                                                channel.
+
+                                                                For Change Number (Number Portability) - following resource data
+                                                                characteristics are needed to support number change:
+                                                                1.
+                                                                AssignmentType: New Number, Wireless Port-In, Wire-line Port-In
+                                                                2.
+                                                                CurrentResourceKey: Current phone number,shall be set when reading
+                                                                resource data
+                                                                and required for phone number change (old number to new
+                                                                number change)</documentation>
+                        </annotation>
+                        <sequence>
+                           <element name="changeInd" type="tns:yesNoIndicator" maxOccurs="1" minOccurs="0">
+                              <annotation>
+                                 <documentation>For changing numbers (change number use case for
+                                                                                                MSISDN, change SIM
+                                                                                                card use case for IMSI)
+                                                                                                a change indicator must
+                                                                                                be introduced for Sell Offering and Modify
+                                                                                                Sold Offering order Item
+                                                                                                type.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="characteristics">
+                              <complexType>
+                                 <sequence>
+                                    <element name="characteristic" type="tns:characteristicIO" maxOccurs="unbounded">
+                                       <annotation>
+                                          <documentation>The actual parameters for the resource.</documentation>
+                                       </annotation>
+                                    </element>
+                                 </sequence>
+                              </complexType>
+                           </element>
+                        </sequence>
+                        <attributeGroup ref="tns:baseGroup"/>
+                     </complexType>
+                     <complexType name="offeringInstanceIO">
+                        <annotation>
+                           <documentation>The data for an offering instance.</documentation>
+                        </annotation>
+                        <sequence>
+                           <element name="subscriptionIdentifier" type="xsd:string" minOccurs="1">
+                              <annotation>
+                                 <documentation>The identifier of the subscription for the offering.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="spid" type="xsd:string" minOccurs="0">
+                              <annotation>
+                                 <documentation>The spid for the offering.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="subscriptionType" type="tns:subscriptionType" minOccurs="1">
+                              <annotation>
+                                 <documentation>Billing subscription details are wrapped inside this
+                                                                                                complex type.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="paidType" type="xsd:string" minOccurs="0">
+                              <annotation>
+                                 <documentation>The paid type for the offering. (Prepaid/postpaid). mandatory for mobile order create or modify orders.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="pickupDate" type="xsd:date" minOccurs="0">
+                              <annotation>
+                                 <documentation>For orders via CRM, e-Commerce, or Web Self-Care,
+                                                                                                the customer has
+                                                                                                the choice of
+                                                                                                either picking up the device / SIM
+                                                                                                card in a TBayTel store or have them
+                                                                                                mailed.
+                                                                                                In case of store
+                                                                                                pickup, a pickup date has to be captured and stored
+                                                                                                with the order
+                                                                                                item</documentation>
+                              </annotation>
+                           </element>
+                           <element name="deliveryMethod" type="xsd:string" minOccurs="0">
+                              <annotation>
+                                 <documentation>device delivery method: shipping vs. store pickup
+                                                                                                pickup date value conditionally optional base this value(only if
+                                                                                                method
+                                                                                                = store pickup)</documentation>
+                              </annotation>
+                           </element>
+                           <element name="contractBusinessKey" type="string" minOccurs="0">
+                              <annotation>
+                                 <documentation>The contract that offering belongs to.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="price" type="tns:priceInstance" maxOccurs="1" minOccurs="0">
+                              <annotation>
+                                 <documentation>The actual price for the product.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="product" minOccurs="0">
+                              <annotation>
+                                 <documentation>The product instance for the root element of the
+                                                                                                product hierarchy of the offering. If not given, all mandatory
+                                                                                                product options of the offering are automatically included.</documentation>
+                              </annotation>
+                              <complexType>
+                                 <complexContent>
+                                    <extension base="tns:productInstanceIO"/>
+                                 </complexContent>
+                              </complexType>
+                           </element>
+                           <element name="extensions" minOccurs="0">
+                              <annotation>
+                                 <documentation>List of key value pairs for Firstname, Lastname,
+                                                                                                AddressInclusionIndicator</documentation>
+                              </annotation>
+                              <complexType>
+                                 <sequence>
+                                    <element name="extension" type="tns:characteristicIO" maxOccurs="unbounded">
+                                       <annotation>
+                                          <documentation>The actual parameters for the characteristics.</documentation>
+                                       </annotation>
+                                    </element>
+                                 </sequence>
+                              </complexType>
+                           </element>
+                           <element name="reason" type="xsd:string" minOccurs="0">
+                              <annotation>
+                                 <documentation>Actual reason for subscription cancellation, suspention and termination. 
+                                                                                This should be populated from northbound system (DCRM)</documentation>
+                              </annotation>
+                           </element>
+                        </sequence>
+                        <attributeGroup ref="tns:baseGroup">
+                           <annotation>
+                              <documentation>The reference to the offering specification in the
+                                                                                product catalog.</documentation>
+                           </annotation>
+                        </attributeGroup>
+                     </complexType>
+                     <simpleType name="productTypeIO" final="restriction">
+                        <annotation>
+                           <documentation>The type of a product (service product, package
+                                                                product, choice product or device product).</documentation>
+                        </annotation>
+                        <restriction base="xsd:string">
+                           <enumeration value="service"/>
+                           <enumeration value="package"/>
+                           <enumeration value="choice"/>
+                           <enumeration value="device"/>
+                        </restriction>
+                     </simpleType>
+                     <complexType name="characteristicIO">
+                        <annotation>
+                           <documentation>A key value pair.</documentation>
+                        </annotation>
+                        <complexContent>
+                           <extension base="tns:baseIO">
+                              <sequence>
+                                 <element name="value" type="xsd:string">
+                                    <annotation>
+                                       <documentation>The value of the characteristic.</documentation>
+                                    </annotation>
+                                 </element>
+                              </sequence>
+                           </extension>
+                        </complexContent>
+                     </complexType>
+                     <simpleType name="actionIndIO" final="restriction">
+                        <annotation>
+                           <documentation>The definition of the action indicator attributes
+                                                                (add, remove or modify).</documentation>
+                        </annotation>
+                        <restriction base="xsd:string">
+                           <enumeration value="add"/>
+                           <enumeration value="remove"/>
+                           <enumeration value="modify"/>
+                           <enumeration value="none"/>
+                        </restriction>
+                     </simpleType>
+                     <complexType name="priceInstance">
+                        <sequence>
+                           <element name="oneTimeCharge" type="tns:oneTimeChargeInstance" minOccurs="0">
+                              <annotation>
+                                 <documentation></documentation>
+                              </annotation>
+                           </element>
+                           <element name="recurringCharge" type="tns:recurringChargeInstance" minOccurs="0">
+                              <annotation>
+                                 <documentation></documentation>
+                              </annotation>
+                           </element>
+                           <element name="deposit" type="tns:depositChargeInstance" minOccurs="0"></element>
+                           <element name="discounts" minOccurs="0" maxOccurs="1">
+                              <annotation>
+                                 <documentation>This element contains the list of Discounts.</documentation>
+                              </annotation>
+                              <complexType>
+                                 <sequence>
+                                    <element name="discount" type="tns:discount" maxOccurs="unbounded">
+                                       <annotation>
+                                          <documentation>Multilevel Discount.</documentation>
+                                       </annotation>
+                                    </element>
+                                 </sequence>
+                              </complexType>
+                           </element>
+                        </sequence>
+                     </complexType>
+                     <complexType name="depositChargeInstance">
+                        <sequence>
+                           <element name="depositId" type="long" minOccurs="0"></element>
+                           <element name="type" type="integer" minOccurs="0"></element>
+                           <element name="value" type="decimal" minOccurs="0"></element>
+                           <element name="overriddenValue" type="decimal" minOccurs="0"></element>
+                        </sequence>
+                     </complexType>
+                     <complexType name="discount">
+                        <sequence>
+                           <element name="identifier" type="string" minOccurs="0"></element>
+                           <element name="value" type="decimal" minOccurs="0"></element>
+                           <element name="valueType" type="string" minOccurs="0"></element>
+                           <element name="disocuntType" type="string" minOccurs="0"></element>
+                           <element name="frequency" type="string" minOccurs="0"></element>
+                        </sequence>
+                     </complexType>
+                     <complexType name="oneTimeChargeInstance">
+                        <sequence>
+                           <element name="upfrontIndicator" type="string" minOccurs="0"></element>
+                           <element name="chargeTemplateBusinessKey" type="string" minOccurs="0"></element>
+                           <element name="chargeValue" type="decimal" minOccurs="0"></element>
+                           <element name="productChargeValue" type="decimal" minOccurs="0"></element>
+                           <element name="taxValue" type="decimal" minOccurs="0"></element>
+                           <element name="overriddenValue" type="decimal" minOccurs="0"></element>
+                           <element name="chargeAlteration" type="decimal" minOccurs="0"></element>
+                           <element name="monthlyCancellationFee" type="decimal" minOccurs="0"></element>
+                        </sequence>
+                     </complexType>
+                     <complexType name="recurringChargeInstance">
+                        <sequence>
+                           <element name="chargeValue" type="decimal" minOccurs="0"></element>
+                           <element name="frequency" type="string" minOccurs="0"></element>
+                           <element name="productChargeValue" type="decimal" minOccurs="0"></element>
+                           <element name="validFor" type="positiveInteger" minOccurs="0"></element>
+                           <element name="overriddenValue" type="decimal" minOccurs="0"></element>
+                        </sequence>
+                     </complexType>
+                     <complexType name="productInstanceBaseIO" abstract="true">
+                        <annotation>
+                           <documentation>The data common for all kinds of product instances.</documentation>
+                        </annotation>
+                        <sequence>
+                           <element name="productType" type="tns:productTypeIO">
+                              <annotation>
+                                 <documentation>The type of the product spec
+                                                                                                (service/device/package/choice product).</documentation>
+                              </annotation>
+                           </element>
+                           <element name="characteristics" minOccurs="0">
+                              <complexType>
+                                 <sequence>
+                                    <element name="characteristic" type="tns:characteristicIO" maxOccurs="unbounded">
+                                       <annotation>
+                                          <documentation>The actual parameters for the product.</documentation>
+                                       </annotation>
+                                    </element>
+                                 </sequence>
+                              </complexType>
+                           </element>
+                           <element name="price" type="tns:priceInstance" maxOccurs="1" minOccurs="0">
+                              <annotation>
+                                 <documentation>The actual price for the product.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="path" type="string" minOccurs="0">
+                              <annotation>
+                                 <documentation>Business keys of the entities present in the hierarchical structure of an entity(upto root).
+                                                                                                The business keys are separated by a separator.</documentation>
+                              </annotation>
+                           </element>
+                        </sequence>
+                        <attributeGroup ref="tns:baseGroup"/>
+                        <attribute name="actionInd" type="tns:actionIndIO">
+                           <annotation>
+                              <documentation>Mandatory for AddProducts/ RemoveProducts: Indicates
+                                                                                the action for this product option.</documentation>
+                           </annotation>
+                        </attribute>
+                     </complexType>
+                     <complexType name="productInstanceIO">
+                        <annotation>
+                           <documentation>The product instance information.</documentation>
+                        </annotation>
+                        <choice>
+                           <element name="packageProduct" type="tns:packageProductInstanceIO">
+                              <annotation>
+                                 <documentation>Package product instance.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="serviceProduct" type="tns:serviceProductInstanceIO">
+                              <annotation>
+                                 <documentation>Service product instance. Further levels not present
+                                                                                                in northbound OM IF, but in Subscriber Mgmt IF</documentation>
+                              </annotation>
+                           </element>
+                           <element name="deviceProduct" type="tns:deviceProductInstanceIO">
+                              <annotation>
+                                 <documentation>Device product instance,.</documentation>
+                              </annotation>
+                           </element>
+                           <element name="choiceProduct" type="tns:choiceProductInstanceIO">
+                              <annotation>
+                                 <documentation>Product choice product.</documentation>
+                              </annotation>
+                           </element>
+                        </choice>
+                     </complexType>
+                     <complexType name="serviceProductInstanceIO">
+                        <annotation>
+                           <documentation>The data for a service product instance. Further
+                                                                levels (as the product and techncial services) are not present in
+                                                                northbound OM API, but in Subscriber Mgmt API.</documentation>
+                        </annotation>
+                        <complexContent>
+                           <extension base="tns:productInstanceBaseIO">
+                              <sequence>
+                                 <element name="productQuantity" type="integer" minOccurs="0"></element>
+                                 <element name="resourcesData" minOccurs="0">
+                                    <complexType>
+                                       <sequence>
+                                          <element name="resourceData" type="tns:resourceDataIO" minOccurs="0" maxOccurs="unbounded">
+                                             <annotation>
+                                                <documentation>Resource characteristics for this product
+                                                                                                                                                                                instance.</documentation>
+                                             </annotation>
+                                          </element>
+                                       </sequence>
+                                    </complexType>
+                                 </element>
+                                 <element name="reasonCode" type="string" minOccurs="0"/>
+                              </sequence>
+                           </extension>
+                        </complexContent>
+                     </complexType>
+                     <complexType name="deviceProductInstanceIO">
+                        <annotation>
+                           <documentation>The data for a device product instance. Further levels
+                                                                (as the resource itself) are not present in northbound OM IF, but in
+                                                                Subscriber Mgmt IF</documentation>
+                        </annotation>
+                        <complexContent>
+                           <extension base="tns:productInstanceBaseIO">
+                              <sequence>
+                                 <element name="productQuantity" type="xsd:integer" minOccurs="0"></element>
+                                 <element name="resourceData" type="tns:resourceDataIO" minOccurs="0" maxOccurs="unbounded">
+                                    <annotation>
+                                       <documentation>Resource characteristics for this product
+                                                                                                                                instance.</documentation>
+                                    </annotation>
+                                 </element>
+                              </sequence>
+                           </extension>
+                        </complexContent>
+                     </complexType>
+                     <complexType name="packageProductInstanceIO">
+                        <annotation>
+                           <documentation>The data for a package product instance.</documentation>
+                        </annotation>
+                        <complexContent>
+                           <extension base="tns:productInstanceBaseIO">
+                              <sequence>
+                                 <element name="products" minOccurs="0">
+                                    <complexType>
+                                       <sequence>
+                                          <element name="product" type="tns:productInstanceIO" minOccurs="0" maxOccurs="unbounded">
+                                             <annotation>
+                                                <documentation>The child product instances of this product
+                                                                                                                                                                                (for package product).</documentation>
+                                             </annotation>
+                                          </element>
+                                       </sequence>
+                                    </complexType>
+                                 </element>
+                              </sequence>
+                           </extension>
+                        </complexContent>
+                     </complexType>
+                     <complexType name="choiceProductInstanceIO">
+                        <annotation>
+                           <documentation>The data for a choice product instance.</documentation>
+                        </annotation>
+                        <complexContent>
+                           <extension base="tns:productInstanceBaseIO">
+                              <sequence>
+                                 <element name="products" minOccurs="0">
+                                    <complexType>
+                                       <sequence>
+                                          <element name="product" type="tns:productInstanceIO" minOccurs="0" maxOccurs="unbounded">
+                                             <annotation>
+                                                <documentation>The child product instances of this product
+                                                                                                                                                                                (for choice product).</documentation>
+                                             </annotation>
+                                          </element>
+                                       </sequence>
+                                    </complexType>
+                                 </element>
+                              </sequence>
+                           </extension>
+                        </complexContent>
+                     </complexType>
+                     <complexType name="subscriptionType">
+                        <annotation>
+                           <documentation>This element denotes subscription type associated with technical service.
+                                                                                                                This will be used for validation only when received as attribute of technical service.</documentation>
+                        </annotation>
+                        <sequence>
+                           <element name="name" type="xsd:string" minOccurs="1">
+                              <annotation>
+                                 <documentation>unique name of subscription type.</documentation>
+                              </annotation>
+                           </element>
+                        </sequence>
+                     </complexType>
+                     <!--Simple type added For resourceData changeIndiactor value restriction-->
+                     <simpleType name="yesNoIndicator" final="restriction">
+                        <annotation>
+                           <documentation>The definition of the action indicator attributes
+                                                                (add, remove or modify).</documentation>
+                        </annotation>
+                        <restriction base="xsd:string">
+                           <enumeration value="YES"/>
+                           <enumeration value="NO"/>
+                        </restriction>
+                     </simpleType>    
+     
+</schema>

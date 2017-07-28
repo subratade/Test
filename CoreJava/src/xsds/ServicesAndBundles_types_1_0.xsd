@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:serviceandbundledtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    
+    <xs:simpleType name="PricePlanOptionType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Service -->
+            <xs:enumeration value="1"/><!-- Package -->
+            <xs:enumeration value="2"/><!-- Bundle -->
+            <xs:enumeration value="3"/><!-- Auxiliary Service -->
+            <xs:enumeration value="4"/><!-- Auxiliary Bundle -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="AuxiliaryServiceState">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Active -->
+            <xs:enumeration value="1"/><!-- Deprecated -->
+            <xs:enumeration value="2"/><!-- Closed -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ServicePreference">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Default -->
+            <xs:enumeration value="1"/><!-- Optional -->
+            <xs:enumeration value="2"/><!-- Mandatory -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="AdditionalMobileNumber" type="serviceandbundledtns:AdditionalMobileNumber" />
+    <xs:complexType name="AdditionalMobileNumber">
+        <xs:sequence>
+            <xs:element name="auxiliaryServiceID" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="mobileNumber" nillable="true" minOccurs="0" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>

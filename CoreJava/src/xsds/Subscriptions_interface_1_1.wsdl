@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+    targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.1"
+    xmlns:tns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.1" 
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" 
+    xmlns:subscriptiondtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" 
+    xmlns:cardpackagedtns="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04" 
+    xmlns:serviceandbundledtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <wsdl:documentation>Subscriptions API 1.1 for CRMAPI Version 2.1 on April 17th, 2009</wsdl:documentation>
+
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v1.1">
+
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" schemaLocation="Subscriptions_types_1_1.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04" schemaLocation="CardPackages_types_1_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04" schemaLocation="ServicesAndBundles_types_1_0.xsd" />
+
+            <xs:element name="listSubscriptionCreationTemplatesResponse" type="tns:listSubscriptionCreationTemplatesResponse" />
+            <xs:complexType name="listSubscriptionCreationTemplatesResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:SubscriptionCreationTemplateReference" />
+                </xs:sequence>
+            </xs:complexType>
+
+
+            <xs:element name="listSubscriptionClassesResponse" type="tns:listSubscriptionClassesResponse" />
+            <xs:complexType name="listSubscriptionClassesResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:SubscriptionClassReference" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptionLevelsResponse" type="tns:listSubscriptionLevelsResponse" />
+            <xs:complexType name="listSubscriptionLevelsResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:SubscriptionLevelReference" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptionTypesResponse" type="tns:listSubscriptionTypesResponse" />
+            <xs:complexType name="listSubscriptionTypesResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:SubscriptionTypeReference" />
+                </xs:sequence>
+            </xs:complexType>
+
+        </xs:schema>
+    </wsdl:types>
+
+
+    <wsdl:message name="listSubscriptionCreationTemplatesResponse">
+        <wsdl:part element="tns:listSubscriptionCreationTemplatesResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionClassesResponse">
+        <wsdl:part element="tns:listSubscriptionClassesResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionLevelsResponse">
+        <wsdl:part element="tns:listSubscriptionLevelsResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionTypesResponse">
+        <wsdl:part element="tns:listSubscriptionTypesResponse" name="part1" />
+    </wsdl:message>
+    
+
+</wsdl:definitions>

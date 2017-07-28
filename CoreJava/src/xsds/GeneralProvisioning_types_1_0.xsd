@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/generalprovisioning/xsd/2010/06"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:generalprovdtns="http://soap.crmapi.util.redknee.com/generalprovisioning/xsd/2010/06"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    
+    <xs:simpleType name="BlockingTemplateStateType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Active -->
+            <xs:enumeration value="1"/><!-- Deprecated -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ChargingTemplateStateType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Active -->
+            <xs:enumeration value="1"/><!-- Deprecated -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ScreeningTemplateStateType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Active -->
+            <xs:enumeration value="1"/><!-- Deprecated -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ContractFeeFrequency">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Day -->
+            <xs:enumeration value="1"/><!-- Month -->
+            <xs:enumeration value="2"/><!-- Year -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ContractState">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0"/><!-- Active -->
+            <xs:enumeration value="1"/><!-- Deprecated -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="DunningConfigurationType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="1"/><!-- Service Provider -->
+            <xs:enumeration value="2"/><!-- Custom -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="BlockingTemplateReference" type="generalprovdtns:BlockingTemplateReference" />
+    <xs:complexType name="BlockingTemplateReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="state" nillable="true" minOccurs="0" type="generalprovdtns:BlockingTemplateStateType" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="ScreeningTemplateReference" type="generalprovdtns:ScreeningTemplateReference" />
+    <xs:complexType name="ScreeningTemplateReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="state" nillable="true" minOccurs="0" type="generalprovdtns:ScreeningTemplateStateType" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="ChargingTemplateReference" type="generalprovdtns:ChargingTemplateReference" />
+    <xs:complexType name="ChargingTemplateReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="state" nillable="true" minOccurs="0" type="generalprovdtns:ChargingTemplateStateType" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="Contract" type="generalprovdtns:Contract" />
+    <xs:complexType name="Contract">
+        <xs:complexContent>
+            <xs:extension base="generalprovdtns:ContractReference">
+                <xs:sequence>
+                    <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+                    <xs:element name="duration" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="durationFrequency" nillable="true" minOccurs="0" type="generalprovdtns:ContractFeeFrequency" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="ContractReference" type="generalprovdtns:ContractReference" />
+    <xs:complexType name="ContractReference">
+        <xs:sequence>
+            <xs:element name="fee" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="state" nillable="true" minOccurs="0" type="generalprovdtns:ContractState" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="CreditCategory" type="generalprovdtns:CreditCategory" />
+    <xs:complexType name="CreditCategory">
+        <xs:complexContent>
+            <xs:extension base="generalprovdtns:CreditCategoryReference">
+                <xs:sequence>
+                    <xs:element name="dunningConfiguration" nillable="true" minOccurs="0" type="generalprovdtns:DunningConfigurationType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="CreditCategoryReference" type="generalprovdtns:CreditCategoryReference" />
+    <xs:complexType name="CreditCategoryReference">
+        <xs:sequence>
+            <xs:element name="description" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="dunningExempt" nillable="true" minOccurs="0" type="xs:boolean" />
+            <xs:element name="factor" nillable="true" minOccurs="0" type="xs:double" />
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="OccupationReference" type="generalprovdtns:OccupationReference" />
+    <xs:complexType name="OccupationReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="IdentificationFormat" type="generalprovdtns:IdentificationFormat" />
+    <xs:complexType name="IdentificationFormat">
+        <xs:sequence>
+            <xs:element name="regex" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="errorMessage" nillable="true" minOccurs="0" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="IdentificationGroupReference" type="generalprovdtns:IdentificationGroupReference" />
+    <xs:complexType name="IdentificationGroupReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="paidType" nillable="true" minOccurs="0" type="dtns:SystemType" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="IdentificationGroup" type="generalprovdtns:IdentificationGroup" />
+    <xs:complexType name="IdentificationGroup">
+        <xs:complexContent>
+            <xs:extension base="generalprovdtns:IdentificationGroupReference">
+                <xs:sequence>
+                    <xs:element name="identificationTypeID" nillable="true" minOccurs="0" maxOccurs="unbounded" type="xs:long" />
+                    <xs:element name="acceptAny" nillable="true" minOccurs="0" type="xs:boolean" />
+                    <xs:element name="requiredNumber" nillable="true" minOccurs="0" type="xs:int" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="DiscountClassReference" type="generalprovdtns:DiscountClassReference" />
+    <xs:complexType name="DiscountClassReference">
+        <xs:sequence>
+            <xs:element name="identifier" nillable="true" minOccurs="0" type="xs:long" />
+            <xs:element name="spid" nillable="true" minOccurs="0" type="xs:int" />
+            <xs:element name="name" nillable="true" minOccurs="0" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>

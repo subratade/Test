@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:subscriptiondtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06"
+    xmlns:subscriptionv1_1dtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" 
+    xmlns:extdtns="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06" schemaLocation="Subscriptions_types_1_2.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" schemaLocation="Subscriptions_types_1_1.xsd" />
+    
+    <xs:element name="MutablePPSMSupporterSubscriptionExtension" type="extdtns:MutablePPSMSupporterSubscriptionExtension" />
+    <xs:complexType name="MutablePPSMSupporterSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseMutableSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="screeningTemplates" nillable="true" minOccurs="0" maxOccurs="unbounded" type="xs:long" />
+                    <xs:element name="chargingTemplates" nillable="true" minOccurs="0" maxOccurs="unbounded" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="PPSMSupporterSubscriptionExtension" type="extdtns:PPSMSupporterSubscriptionExtension" />
+    <xs:complexType name="PPSMSupporterSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:MutablePPSMSupporterSubscriptionExtension" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="ReadOnlyPPSMSupporterSubscriptionExtension" type="extdtns:ReadOnlyPPSMSupporterSubscriptionExtension" />
+    <xs:complexType name="ReadOnlyPPSMSupporterSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:PPSMSupporterSubscriptionExtension" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="MutableDualBalanceSubscriptionExtension" type="extdtns:MutableDualBalanceSubscriptionExtension" />
+    <xs:complexType name="MutableDualBalanceSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseMutableSubscriptionExtension" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="DualBalanceSubscriptionExtension" type="extdtns:DualBalanceSubscriptionExtension" />
+    <xs:complexType name="DualBalanceSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:MutableDualBalanceSubscriptionExtension" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="ReadOnlyDualBalanceSubscriptionExtension" type="extdtns:ReadOnlyDualBalanceSubscriptionExtension" />
+    <xs:complexType name="ReadOnlyDualBalanceSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:DualBalanceSubscriptionExtension" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    
+</xs:schema>

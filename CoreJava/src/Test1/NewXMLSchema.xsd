@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:tns="http://pcom.redknee.com/cc/v1" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://pcom.redknee.com/cc/v1"
+	version="1.0">
+	
+	<element name="externalCreditCheckResult" type="tns:externalCreditCheckResult">
+	</element>
+	
+	<xs:complexType name="externalCreditCheckResult">
+            <xs:sequence>
+                  <xs:element name="resultCode" type="xs:integer"></xs:element>
+                  <xs:element name="resultMessage" type="xs:string"
+                        minOccurs="0"></xs:element>
+                  <xs:element name="creditScoreDetail" maxOccurs="unbounded">
+                        <xs:complexType>
+                              <xs:sequence>
+                                    <xs:element name="score" type="xs:string"></xs:element>
+                                    <xs:element name="description" type="xs:string"
+                                          minOccurs="0"></xs:element>
+                                    <xs:element name="parameters" type="tns:parameters"
+                                          minOccurs="0"></xs:element>
+                              </xs:sequence>
+                        </xs:complexType>
+                  </xs:element>
+                  <xs:element name="creditCategory" type="xs:string"></xs:element>
+            </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="parameters">
+            <xs:sequence>
+                  <xs:element name="parameter" maxOccurs="unbounded">
+                        <xs:complexType>
+                              <xs:sequence>
+                                    <xs:element name="key" type="xs:string"></xs:element>
+                                    <xs:element name="value" type="tns:paramValue"></xs:element>
+                              </xs:sequence>
+                        </xs:complexType>
+                  </xs:element>
+            </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="paramValue">
+            <xs:sequence>
+                  <xs:any processContents="skip" namespace="##other" minOccurs="0" />
+            </xs:sequence>
+      </xs:complexType>
+
+</schema>
+
+
+
+
+

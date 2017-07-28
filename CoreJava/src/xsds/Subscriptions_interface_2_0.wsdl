@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+    targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v2.0"
+    xmlns:tns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v2.0" 
+    xmlns:dtnsv1_1="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" 
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2011/05" 
+    xmlns:subscriptiondtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2011/01" 
+    xmlns:subscriptionextv1_0dtns="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06"
+    xmlns:subscriptionextdtns="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2011/04"
+    xmlns:subscriptionv1_1dtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" 
+    xmlns:subscriptionv1_2dtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06" 
+    xmlns:subscriptionv1_3dtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/11" 
+    xmlns:cardpackagedtns="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04" 
+    xmlns:serviceandbundlev1_0dtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04" 
+    xmlns:serviceandbundledtns="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2011/01" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <wsdl:documentation>Subscriptions API 2.0 for CRMAPI Version 3.0 on February 2nd, 2011</wsdl:documentation>
+
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/Subscriptions-v2.0">
+
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2011/05" schemaLocation="Common_types_2_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" schemaLocation="Subscriptions_types_1_1.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06" schemaLocation="Subscriptions_types_1_2.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/11" schemaLocation="Subscriptions_types_1_3.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2011/01" schemaLocation="Subscriptions_types_2_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06" schemaLocation="SubscriptionExtensions_types_1_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2011/04" schemaLocation="SubscriptionExtensions_types_2_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/cardpackages/xsd/2009/04" schemaLocation="CardPackages_types_1_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2009/04" schemaLocation="ServicesAndBundles_types_1_0.xsd" />
+            <xs:import namespace="http://soap.crmapi.util.redknee.com/servicesandbundles/xsd/2011/01" schemaLocation="ServicesAndBundles_types_2_0.xsd" />
+
+            <xs:element name="createSubscription" type="tns:createSubscription" />
+            <xs:complexType name="createSubscription">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="creationTemplateID" minOccurs="0" type="xs:long" />
+                    <xs:element name="profile" type="subscriptionv1_2dtns:SubscriptionProfile" />
+                    <xs:element name="status" type="subscriptionv1_1dtns:SubscriptionStatus" />
+                    <xs:element name="rating" type="subscriptiondtns:SubscriptionRating" />
+                    <xs:element name="billing" type="subscriptionv1_1dtns:SubscriptionBilling" />
+                    <xs:element name="cardPackage" minOccurs="0" type="cardpackagedtns:CardPackage" />
+                    <xs:element name="options" minOccurs="0" type="subscriptiondtns:SubscriptionPricePlan" />
+                    <xs:element name="extension" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:BaseSubscriptionExtension" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="createSubscriptionResponse" type="tns:createSubscriptionResponse" />
+            <xs:complexType name="createSubscriptionResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionConvertPaidTypeToPrepaid" type="tns:updateSubscriptionConvertPaidTypeToPrepaid" />
+            <xs:complexType name="updateSubscriptionConvertPaidTypeToPrepaid">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="initialAmount" type="xs:long" />
+                    <xs:element name="options" type="subscriptiondtns:SubscriptionPricePlan" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="updateSubscriptionConvertPaidTypeToPrepaidResponse" type="tns:updateSubscriptionConvertPaidTypeToPrepaidResponse" />
+            <xs:complexType name="updateSubscriptionConvertPaidTypeToPrepaidResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionConvertPaidTypeToPostpaid" type="tns:updateSubscriptionConvertPaidTypeToPostpaid" />
+            <xs:complexType name="updateSubscriptionConvertPaidTypeToPostpaid">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="deposit" minOccurs="0" type="xs:long" />
+                    <xs:element name="creditLimit" minOccurs="0" type="xs:long" />
+                    <xs:element name="options" type="subscriptiondtns:SubscriptionPricePlan" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="updateSubscriptionConvertPaidTypeToPostpaidResponse" type="tns:updateSubscriptionConvertPaidTypeToPostpaidResponse" />
+            <xs:complexType name="updateSubscriptionConvertPaidTypeToPostpaidResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionPricePlanOptions" type="tns:updateSubscriptionPricePlanOptions" />
+            <xs:complexType name="updateSubscriptionPricePlanOptions">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="options" type="subscriptiondtns:SubscriptionPricePlan" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionPricePlanOptions" type="tns:getSubscriptionPricePlanOptions" />
+            <xs:complexType name="getSubscriptionPricePlanOptions">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" minOccurs="0" nillable="true" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="pricePlanID" minOccurs="0" nillable="true" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getSubscriptionPricePlanOptionsResponse" type="tns:getSubscriptionPricePlanOptionsResponse" />
+            <xs:complexType name="getSubscriptionPricePlanOptionsResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionPricePlan" />
+                </xs:sequence>
+            </xs:complexType>
+			
+            <xs:element name="getSubscriptionProfile" type="tns:getSubscriptionProfile" />
+            <xs:complexType name="getSubscriptionProfile">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+			<xs:element name="getSubscriptionProfileResponse" type="tns:getSubscriptionProfileResponse" />
+            <xs:complexType name="getSubscriptionProfileResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionProfileQueryResults" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionContractDetails" type="tns:updateSubscriptionContractDetails" />
+            <xs:complexType name="updateSubscriptionContractDetails">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+            		<xs:element name="contractID" type="xs:long" />
+            		<xs:element name="contractStartDate" nillable="true" minOccurs="0" type="xs:dateTime" />                   
+                    <xs:element name="pricePlanDetails" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionPricePlan" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />
+                </xs:sequence>
+            </xs:complexType>            
+            <xs:element name="updateSubscriptionContractDetailsResponse" type="tns:updateSubscriptionContractDetailsResponse" />
+            <xs:complexType name="updateSubscriptionContractDetailsResponse">
+                <xs:sequence>
+              		<xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionContractUpdateResults" />
+                </xs:sequence>
+            </xs:complexType>
+            
+             <xs:element name="listSubscriptionContracts" type="tns:listSubscriptionContracts" />
+            <xs:complexType name="listSubscriptionContracts">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="spid" type="xs:int" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>            
+            <xs:element name="listSubscriptionContractsResponse" type="tns:listSubscriptionContractsResponse" />
+            <xs:complexType name="listSubscriptionContractsResponse">
+                <xs:sequence>
+              		<xs:element name="return" nillable="true" minOccurs="0"  maxOccurs="unbounded" type="subscriptiondtns:SubscriptionContractReference" />
+                </xs:sequence>
+            </xs:complexType>
+            
+			<xs:element name="listDetailedSubscriptionContracts" type="tns:listDetailedSubscriptionContracts" />
+            <xs:complexType name="listDetailedSubscriptionContracts">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="spid" type="xs:int" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                                        
+                </xs:sequence>
+            </xs:complexType>            
+            <xs:element name="listDetailedSubscriptionContractsResponse" type="tns:listDetailedSubscriptionContractsResponse" />
+            <xs:complexType name="listDetailedSubscriptionContractsResponse">
+                <xs:sequence>
+              		<xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded"  type="subscriptiondtns:SubscriptionContract" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionContract" type="tns:getSubscriptionContract" />
+            <xs:complexType name="getSubscriptionContract">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+            		<xs:element name="contractID" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                               
+                </xs:sequence>
+            </xs:complexType>            
+            <xs:element name="getSubscriptionContractResponse" type="tns:getSubscriptionContractResponse" />
+            <xs:complexType name="getSubscriptionContractResponse">
+                <xs:sequence>
+              		<xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionContract" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionUpdateFees" type="tns:getSubscriptionUpdateFees" />
+            <xs:complexType name="getSubscriptionUpdateFees">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+            		<xs:element name="criteria" minOccurs="1" maxOccurs="unbounded" type="subscriptiondtns:SubscriptionUpdateCriteria" />
+					<xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />
+                </xs:sequence>
+            </xs:complexType>            
+            <xs:element name="getSubscriptionUpdateFeesResponse" type="tns:getSubscriptionUpdateFeesResponse" />
+            <xs:complexType name="getSubscriptionUpdateFeesResponse">
+                <xs:sequence>
+              		<xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionUpdateFees" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionAddExtension" type="tns:updateSubscriptionAddExtension" />
+            <xs:complexType name="updateSubscriptionAddExtension">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="extension" type="subscriptiondtns:BaseSubscriptionExtension" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="updateSubscriptionAddExtensionResponse" type="tns:updateSubscriptionAddExtensionResponse" />
+            <xs:complexType name="updateSubscriptionAddExtensionResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:BaseSubscriptionExtensionReference" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="listDetailedSubscriptionExtensions" type="tns:listDetailedSubscriptionExtensions" />
+            <xs:complexType name="listDetailedSubscriptionExtensions">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="listDetailedSubscriptionExtensionsResponse" type="tns:listDetailedSubscriptionExtensionsResponse" />
+            <xs:complexType name="listDetailedSubscriptionExtensionsResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:BaseReadOnlySubscriptionExtension" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionExtension" type="tns:getSubscriptionExtension" />
+            <xs:complexType name="getSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="extensionReference" type="subscriptiondtns:BaseSubscriptionExtensionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getSubscriptionExtensionResponse" type="tns:getSubscriptionExtensionResponse" />
+            <xs:complexType name="getSubscriptionExtensionResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:BaseReadOnlySubscriptionExtension" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="listSubscriptionExtensions" type="tns:listSubscriptionExtensions" />
+            <xs:complexType name="listSubscriptionExtensions">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="listSubscriptionExtensionsResponse" type="tns:listSubscriptionExtensionsResponse" />
+            <xs:complexType name="listSubscriptionExtensionsResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:BaseSubscriptionExtensionReference" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionExtension" type="tns:updateSubscriptionExtension" />
+            <xs:complexType name="updateSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="extensionReference" type="subscriptiondtns:BaseSubscriptionExtensionReference" />
+                    <xs:element name="extension" type="subscriptionv1_2dtns:BaseMutableSubscriptionExtension" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionRemoveExtension" type="tns:updateSubscriptionRemoveExtension" />
+            <xs:complexType name="updateSubscriptionRemoveExtension">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="extensionReference" type="subscriptiondtns:BaseSubscriptionExtensionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionRechargeVoucherBatch" type="tns:updateSubscriptionRechargeVoucherBatch" />
+            <xs:complexType name="updateSubscriptionRechargeVoucherBatch">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="order" type="subscriptiondtns:VoucherOrder" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="updateSubscriptionRechargeVoucherBatchResponse" type="tns:updateSubscriptionRechargeVoucherBatchResponse" />
+            <xs:complexType name="updateSubscriptionRechargeVoucherBatchResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:VoucherBatchResults" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="deleteSubscription" type="tns:deleteSubscription" />
+            <xs:complexType name="deleteSubscription">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptionsResponse" type="tns:listSubscriptionsResponse" />
+            <xs:complexType name="listSubscriptionsResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="unbounded" type="subscriptiondtns:SubscriptionReference" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionMobileNumber" type="tns:updateSubscriptionMobileNumber" />
+            <xs:complexType name="updateSubscriptionMobileNumber">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="newMobileNumber" type="xs:string" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="updateSubscriptionMobileNumberResponse" type="tns:updateSubscriptionMobileNumberResponse" />
+            <xs:complexType name="updateSubscriptionMobileNumberResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionCardPackage" type="tns:updateSubscriptionCardPackage" />
+            <xs:complexType name="updateSubscriptionCardPackage">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="newCardPackageID" minOccurs="0" type="xs:string" />
+                    <xs:element name="cardPackage" minOccurs="0" type="cardpackagedtns:CardPackage" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionPrimaryPricePlan" type="tns:updateSubscriptionPrimaryPricePlan" />
+            <xs:complexType name="updateSubscriptionPrimaryPricePlan">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="pricePlanID" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionSecondaryPricePlan" type="tns:updateSubscriptionSecondaryPricePlan" />
+            <xs:complexType name="updateSubscriptionSecondaryPricePlan">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="pricePlanID" type="xs:long" />
+                    <xs:element name="start" type="xs:dateTime" />
+                    <xs:element name="end" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionPaidType" type="tns:updateSubscriptionPaidType" />
+            <xs:complexType name="updateSubscriptionPaidType">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="paidType" type="dtnsv1_1:PaidType" />
+                    <xs:element name="newSubscriptionID" minOccurs="0" type="xs:string" />
+                    <xs:element name="pricePlanID" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="updateSubscriptionPaidTypeResponse" type="tns:updateSubscriptionPaidTypeResponse" />
+            <xs:complexType name="updateSubscriptionPaidTypeResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionCreditLimit" type="tns:updateSubscriptionCreditLimit" />
+            <xs:complexType name="updateSubscriptionCreditLimit">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="creditLimit" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionResetMonthlySpendAmount" type="tns:updateSubscriptionResetMonthlySpendAmount" />
+            <xs:complexType name="updateSubscriptionResetMonthlySpendAmount">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionResetPoolQuotaUsage" type="tns:updateSubscriptionResetPoolQuotaUsage" />
+            <xs:complexType name="updateSubscriptionResetPoolQuotaUsage">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionEnablePricePlanOption" type="tns:updateSubscriptionEnablePricePlanOption" />
+            <xs:complexType name="updateSubscriptionEnablePricePlanOption">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="optionType" type="serviceandbundlev1_0dtns:PricePlanOptionType" />
+                    <xs:element name="optionID" type="xs:long" />
+                    <xs:element name="start" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="end" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="numberOfPayments" minOccurs="0" type="xs:int" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionDisablePricePlanOption" type="tns:updateSubscriptionDisablePricePlanOption" />
+            <xs:complexType name="updateSubscriptionDisablePricePlanOption">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="optionType" type="serviceandbundlev1_0dtns:PricePlanOptionType" />
+                    <xs:element name="optionID" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionRechargeVoucher" type="tns:updateSubscriptionRechargeVoucher" />
+            <xs:complexType name="updateSubscriptionRechargeVoucher">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="voucher" type="xs:string" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionState" type="tns:updateSubscriptionState" />
+            <xs:complexType name="updateSubscriptionState">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="newState" type="subscriptionv1_1dtns:SubscriptionState" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="updateSubscriptionWithStateTransition" type="tns:updateSubscriptionWithStateTransition" />
+            <xs:complexType name="updateSubscriptionWithStateTransition">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="currentState" minOccurs="0" maxOccurs="unbounded" type="subscriptionv1_1dtns:SubscriptionState" />
+                    <xs:element name="newState" type="subscriptionv1_1dtns:SubscriptionState" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="updateSubscriptionWithStateTransitionResponse" type="tns:updateSubscriptionWithStateTransitionResponse" />
+            <xs:complexType name="updateSubscriptionWithStateTransitionResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:SubscriptionStateTransitionResult" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="createSubscriptionBucketHistory" type="tns:createSubscriptionBucketHistory" />
+            <xs:complexType name="createSubscriptionBucketHistory">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />                                        
+                    <xs:element name="createBucketHistoryRequest" type="serviceandbundledtns:CreateBucketHistoryRequest" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="createSubscriptionBucketHistoryResponse" type="tns:createSubscriptionBucketHistoryResponse" />
+            <xs:complexType name="createSubscriptionBucketHistoryResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:BucketHistoryCreateResult" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="listSubscriptionBucketHistory" type="tns:listSubscriptionBucketHistory" />
+            <xs:complexType name="listSubscriptionBucketHistory">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscripitonRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="start" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="end" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="category" minOccurs="0" type="xs:long" />
+                    <xs:element name="pageKey" minOccurs="0" type="xs:string" />
+                    <xs:element name="limit" type="xs:int" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="listSubscriptionBucketHistoryResponse" type="tns:listSubscriptionBucketHistoryResponse" />
+            <xs:complexType name="listSubscriptionBucketHistoryResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:BucketHistoryQueryResult" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>  
+            
+            <xs:element name="listDetailedSubscriptionBucketHistory" type="tns:listDetailedSubscriptionBucketHistory" />
+            <xs:complexType name="listDetailedSubscriptionBucketHistory">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscripitonRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="start" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="end" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="category" minOccurs="0" type="xs:long" />
+                    <xs:element name="pageKey" minOccurs="0" type="xs:string" />
+                    <xs:element name="limit" type="xs:int" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="listDetailedSubscriptionBucketHistoryResponse" type="tns:listDetailedSubscriptionBucketHistoryResponse" />
+            <xs:complexType name="listDetailedSubscriptionBucketHistoryResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:DetailedBucketHistoryQueryResult" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getBucketHistory" type="tns:getBucketHistory" />
+            <xs:complexType name="getBucketHistory">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="bucketHistoryID" minOccurs="1" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getBucketHistoryResponse" type="tns:getBucketHistoryResponse" />
+            <xs:complexType name="getBucketHistoryResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptiondtns:DetailedBucketHistoryQueryResult" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>                                              
+
+            <xs:element name="updateSubscriptionProfile" type="tns:updateSubscriptionProfile" />
+            <xs:complexType name="updateSubscriptionProfile">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="profile" minOccurs="0" type="subscriptionv1_2dtns:MutableSubscriptionProfile" />
+                    <xs:element name="billing" minOccurs="0" type="subscriptionv1_1dtns:MutableSubscriptionBilling" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listPPSMSupportees" type="tns:listPPSMSupportees" />
+            <xs:complexType name="listPPSMSupportees">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="supporterRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="listPPSMSupporteesResponse" type="tns:listPPSMSupporteesResponse" />
+            <xs:complexType name="listPPSMSupporteesResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="subscriptionextdtns:PPSMSupporteeSubscriptionExtensionReference" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="getSubscriptionBalance" type="tns:getSubscriptionBalance" />
+            <xs:complexType name="getSubscriptionBalance">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="detailed" nillable="true" minOccurs="0" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="getSubscriptionBundleBalances" type="tns:getSubscriptionBundleBalances" />
+            <xs:complexType name="getSubscriptionBundleBalances">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="bucketID" minOccurs="0" type="xs:long" />
+                    <xs:element name="bundleID" minOccurs="0" type="xs:long" />
+                    <xs:element name="bundleCategory" minOccurs="0" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="getSubscriptionPromotionStatus" type="tns:getSubscriptionPromotionStatus" />
+            <xs:complexType name="getSubscriptionPromotionStatus">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateSubscriptionsPPSMSupporter" type="tns:updateSubscriptionsPPSMSupporter" />
+            <xs:complexType name="updateSubscriptionsPPSMSupporter">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="currentSupporterRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="newSupporterRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptionCreationTemplates" type="tns:listSubscriptionCreationTemplates" />
+            <xs:complexType name="listSubscriptionCreationTemplates">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="spid" type="xs:int" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptions" type="tns:listSubscriptions" />
+            <xs:complexType name="listSubscriptions">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="accountID" type="xs:string" />
+                    <xs:element name="recurse" type="xs:boolean" />
+                    <xs:element name="responsible" minOccurs="0" type="xs:boolean" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptionClasses" type="tns:listSubscriptionClasses" />
+            <xs:complexType name="listSubscriptionClasses">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptionLevels" type="tns:listSubscriptionLevels" />
+            <xs:complexType name="listSubscriptionLevels">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="spid" type="xs:int" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="listSubscriptionTypes" type="tns:listSubscriptionTypes" />
+            <xs:complexType name="listSubscriptionTypes">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="isAscending" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="resetVoicemailPassword" type="tns:resetVoicemailPassword" />
+            <xs:complexType name="resetVoicemailPassword">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="createBundleAdjustments" type="tns:createBundleAdjustments" />
+            <xs:complexType name="createBundleAdjustments">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="adjustments" nillable="true" minOccurs="1" maxOccurs="unbounded" type="serviceandbundledtns:BundleAdjustment" />                    
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="createBundleAdjustmentsResponse" type="tns:createBundleAdjustmentsResponse" />
+            <xs:complexType name="createBundleAdjustmentsResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="serviceandbundledtns:BundleAdjustmentResponse" nillable="true" minOccurs="0" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="executeSubscriptionBalanceQuery" type="tns:executeSubscriptionBalanceQuery" />
+            <xs:complexType name="executeSubscriptionBalanceQuery">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="balanceTypes" minOccurs="1" maxOccurs="unbounded" type="xs:string" />                    
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionBundleBalancesWithSummary" type="tns:getSubscriptionBundleBalancesWithSummary" />
+            <xs:complexType name="getSubscriptionBundleBalancesWithSummary">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="bucketID" minOccurs="0" type="xs:long" />
+                    <xs:element name="bundleID" minOccurs="0" type="xs:long" />
+                    <xs:element name="bundleCategory" minOccurs="0" type="xs:long" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getSubscriptionBundleBalancesWithSummaryResponse" type="tns:getSubscriptionBundleBalancesWithSummaryResponse" />
+            <xs:complexType name="getSubscriptionBundleBalancesWithSummaryResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionBundleBalanceSummary" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionDeviceType" type="tns:getSubscriptionDeviceType" />
+            <xs:complexType name="getSubscriptionDeviceType">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" type="subscriptiondtns:SubscriptionReference" />
+                    <!-- <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />-->                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getSubscriptionDeviceTypeResponse" type="tns:getSubscriptionDeviceTypeResponse" />
+            <xs:complexType name="getSubscriptionDeviceTypeResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" type="xs:long" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionContractStatus" type="tns:getSubscriptionContractStatus" />
+            <xs:complexType name="getSubscriptionContractStatus">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getSubscriptionContractStatusResponse" type="tns:getSubscriptionContractStatusResponse" />
+            <xs:complexType name="getSubscriptionContractStatusResponse">
+                <xs:sequence>
+                   <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionContractStatusQueryResult" />
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:element name="getSubscriptionSecondaryBalance" type="tns:getSubscriptionSecondaryBalance" />
+            <xs:complexType name="getSubscriptionSecondaryBalance">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="categoryId" nillable="true" minOccurs="0" maxOccurs="unbounded" type="xs:int" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getSubscriptionSecondaryBalanceResponse" type="tns:getSubscriptionSecondaryBalanceResponse" />
+            <xs:complexType name="getSubscriptionSecondaryBalanceResponse">
+                <xs:sequence>
+                   <xs:element name="return" nillable="true" minOccurs="1" maxOccurs="1" type="subscriptiondtns:SubscriptionSecondaryBalanceQueryResult" />
+                </xs:sequence>
+            </xs:complexType>            
+            
+             <xs:element name="getDetailedBalanceHistory" type="tns:getDetailedBalanceHistory" />
+    		 <xs:complexType name="getDetailedBalanceHistory">
+                <xs:sequence>
+                    <xs:element name="header" type="dtns:CRMRequestHeader" />
+                    <xs:element name="subscriptionRef" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="start" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="end" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="pageKey" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="limit"  nillable="true" minOccurs="0" type="xs:int" />
+                    <xs:element name="isAscending" nillable="true" minOccurs="0" default="true" type="xs:boolean" />
+                    <xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+     		 </xs:complexType>
+      
+		      <xs:element name="getDetailedBalanceHistoryResponse" type="tns:getDetailedBalanceHistoryResponse" />
+			  <xs:complexType name="getDetailedBalanceHistoryResponse">
+			      <xs:sequence>
+				 	 <xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:MergedBalanceHistoryResult" />
+			      </xs:sequence>
+			  </xs:complexType>
+			  
+			 <xs:element name="prepareMoveSubscription" type="tns:prepareMoveSubscription" />
+    		 <xs:complexType name="prepareMoveSubscription">
+                <xs:sequence>
+                	<xs:element name="header" type="dtns:CRMRequestHeader" />
+                	<xs:element name="spid"  nillable="true" minOccurs="0" type="xs:int" />
+                	<xs:element name="balanceCarryOver" nillable="true" minOccurs="0" default="false" type="xs:boolean" />
+                	<xs:element name="moveRequest" nillable="true" minOccurs="0" type="subscriptiondtns:ExclusiveSubscriptionMoveRequest" />
+                	<xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+     		 </xs:complexType>
+      
+		     <xs:element name="prepareMoveSubscriptionResponse" type="tns:prepareMoveSubscriptionResponse" />
+			 <xs:complexType name="prepareMoveSubscriptionResponse">
+			 	<xs:sequence>
+					<xs:element name="result" nillable="false" minOccurs="1" type="dtns:GenericResponse" />
+					<xs:element name="moveReferenceId" nillable="true" minOccurs="0" type="xs:long" />
+					<xs:element name="newSubscriberId" minOccurs="0" maxOccurs="1" type="xs:string" />
+					<xs:element name="oldSubscriberBalance" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriberBalanceDetail" />
+					<xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />        
+			    </xs:sequence>
+			 </xs:complexType>
+			 
+		 	<xs:element name="completeMoveSubscription" type="tns:completeMoveSubscription" />
+    		 <xs:complexType name="completeMoveSubscription">
+                <xs:sequence>
+                	<xs:element name="header" type="dtns:CRMRequestHeader" />
+                	<xs:element name="spid"  nillable="true" minOccurs="0" type="xs:int" />
+                	<xs:element name="moveReferenceId" nillable="true" minOccurs="0" type="xs:long" />
+                	<xs:element name="moveRequest" nillable="true" minOccurs="0" type="subscriptiondtns:ExclusiveSubscriptionMoveRequest" />
+                	<xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />                    
+                </xs:sequence>
+     		 </xs:complexType>
+     		 
+     		 <xs:element name="completeMoveSubscriptionResponse" type="tns:completeMoveSubscriptionResponse" />
+			 <xs:complexType name="completeMoveSubscriptionResponse">
+                <xs:sequence>
+                    <xs:element name="return" nillable="true" minOccurs="0" maxOccurs="1" type="dtns:GenericResponse" />
+                </xs:sequence>
+			 </xs:complexType>
+     		 
+     		 			  <!-- UMP-5263 -->
+			  <xs:element name="listEntityBundleDetails" type="tns:listEntityBundleDetails" />
+				<xs:complexType name="listEntityBundleDetails">
+					<xs:sequence>
+						<xs:element name="header" type="dtns:CRMRequestHeader" />
+						<xs:element name="entityRef" type="subscriptiondtns:EntityRef" />
+						<xs:element name="pagingInfo" type="subscriptiondtns:PagingInfo" />
+						<xs:element name="parameters" nillable="true" minOccurs="0" maxOccurs="unbounded" type="dtnsv1_1:GenericParameter" />				            
+					</xs:sequence>
+				</xs:complexType>
+			<xs:element name="listEntityBundleDetailsResponse" type="tns:listEntityBundleDetailsResponse" />
+			<xs:complexType name="listEntityBundleDetailsResponse">
+				<xs:sequence>
+					<xs:element name="return" nillable="true" minOccurs="0" type="subscriptiondtns:EntityBundleDetails" />
+				</xs:sequence>
+			</xs:complexType>
+			  <!-- UMP-5263 -->
+			 
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="createBundleAdjustmentsMessage">
+        <wsdl:part element="tns:createBundleAdjustments" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="createBundleAdjustmentsResponse">
+        <wsdl:part element="tns:createBundleAdjustmentsResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="createSubscriptionMessage">
+        <wsdl:part element="tns:createSubscription" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="createSubscriptionResponse">
+        <wsdl:part element="tns:createSubscriptionResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="getSubscriptionPricePlanOptionsMessage">
+        <wsdl:part element="tns:getSubscriptionPricePlanOptions" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="getSubscriptionPricePlanOptionsResponse">
+		<wsdl:part element="tns:getSubscriptionPricePlanOptionsResponse" name="part1" />
+    </wsdl:message>    
+    
+    <wsdl:message name="updateSubscriptionConvertPaidTypeToPrepaidMessage">
+        <wsdl:part element="tns:updateSubscriptionConvertPaidTypeToPrepaid" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="updateSubscriptionConvertPaidTypeToPrepaidResponse">
+        <wsdl:part element="tns:updateSubscriptionConvertPaidTypeToPrepaidResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateSubscriptionConvertPaidTypeToPostpaidMessage">
+        <wsdl:part element="tns:updateSubscriptionConvertPaidTypeToPostpaid" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="updateSubscriptionConvertPaidTypeToPostpaidResponse">
+        <wsdl:part element="tns:updateSubscriptionConvertPaidTypeToPostpaidResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateSubscriptionPricePlanOptionsMessage">
+        <wsdl:part element="tns:updateSubscriptionPricePlanOptions" name="part1" />
+    </wsdl:message>        
+
+    <wsdl:message name="getSubscriptionProfileMessage">
+        <wsdl:part element="tns:getSubscriptionProfile" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="getSubscriptionProfileResponse">
+        <wsdl:part element="tns:getSubscriptionProfileResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateSubscriptionContractDetailsMessage">
+        <wsdl:part element="tns:updateSubscriptionContractDetails" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="updateSubscriptionContractDetailsResponse">
+        <wsdl:part element="tns:updateSubscriptionContractDetailsResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="listSubscriptionContractsMessage">
+        <wsdl:part element="tns:listSubscriptionContracts" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="listSubscriptionContractsResponse">
+        <wsdl:part element="tns:listSubscriptionContractsResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="listDetailedSubscriptionContractsMessage">
+        <wsdl:part element="tns:listDetailedSubscriptionContracts" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="listDetailedSubscriptionContractsResponse">
+        <wsdl:part element="tns:listDetailedSubscriptionContractsResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="getSubscriptionContractMessage">
+        <wsdl:part element="tns:getSubscriptionContract" name="part1" />
+    </wsdl:message>   
+	<wsdl:message name="getSubscriptionContractResponse">
+        <wsdl:part element="tns:getSubscriptionContractResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="getSubscriptionUpdateFeesMessage">
+        <wsdl:part element="tns:getSubscriptionUpdateFees" name="part1" />
+    </wsdl:message>   
+	<wsdl:message name="getSubscriptionUpdateFeesResponse">
+        <wsdl:part element="tns:getSubscriptionUpdateFeesResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateSubscriptionAddExtensionMessage">
+        <wsdl:part element="tns:updateSubscriptionAddExtension" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="updateSubscriptionAddExtensionResponse">
+        <wsdl:part element="tns:updateSubscriptionAddExtensionResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="listDetailedSubscriptionExtensionsMessage">
+        <wsdl:part element="tns:listDetailedSubscriptionExtensions" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="listDetailedSubscriptionExtensionsResponse">
+        <wsdl:part element="tns:listDetailedSubscriptionExtensionsResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="getSubscriptionExtensionMessage">
+        <wsdl:part element="tns:getSubscriptionExtension" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="getSubscriptionExtensionResponse">
+        <wsdl:part element="tns:getSubscriptionExtensionResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionExtensionsMessage">
+        <wsdl:part element="tns:listSubscriptionExtensions" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="listSubscriptionExtensionsResponse">
+        <wsdl:part element="tns:listSubscriptionExtensionsResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionExtensionMessage">
+        <wsdl:part element="tns:updateSubscriptionExtension" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionRemoveExtensionMessage">
+        <wsdl:part element="tns:updateSubscriptionRemoveExtension" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionRechargeVoucherBatchMessage">
+        <wsdl:part element="tns:updateSubscriptionRechargeVoucherBatch" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="updateSubscriptionRechargeVoucherBatchResponse">
+        <wsdl:part element="tns:updateSubscriptionRechargeVoucherBatchResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="deleteSubscriptionMessage">
+        <wsdl:part element="tns:deleteSubscription" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionsResponse">
+        <wsdl:part element="tns:listSubscriptionsResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionMobileNumberMessage">
+        <wsdl:part element="tns:updateSubscriptionMobileNumber" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="updateSubscriptionMobileNumberResponse">
+        <wsdl:part element="tns:updateSubscriptionMobileNumberResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionCardPackageMessage">
+        <wsdl:part element="tns:updateSubscriptionCardPackage" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionPrimaryPricePlanMessage">
+        <wsdl:part element="tns:updateSubscriptionPrimaryPricePlan" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionSecondaryPricePlanMessage">
+        <wsdl:part element="tns:updateSubscriptionSecondaryPricePlan" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionPaidTypeMessage">
+        <wsdl:part element="tns:updateSubscriptionPaidType" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="updateSubscriptionPaidTypeResponse">
+        <wsdl:part element="tns:updateSubscriptionPaidTypeResponse" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionCreditLimitMessage">
+        <wsdl:part element="tns:updateSubscriptionCreditLimit" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionResetMonthlySpendAmountMessage">
+        <wsdl:part element="tns:updateSubscriptionResetMonthlySpendAmount" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionResetPoolQuotaUsageMessage">
+        <wsdl:part element="tns:updateSubscriptionResetPoolQuotaUsage" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionEnablePricePlanOptionMessage">
+        <wsdl:part element="tns:updateSubscriptionEnablePricePlanOption" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionDisablePricePlanOptionMessage">
+        <wsdl:part element="tns:updateSubscriptionDisablePricePlanOption" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionRechargeVoucherMessage">
+        <wsdl:part element="tns:updateSubscriptionRechargeVoucher" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionStateMessage">
+        <wsdl:part element="tns:updateSubscriptionState" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionProfileMessage">
+        <wsdl:part element="tns:updateSubscriptionProfile" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="listPPSMSupporteesMessage">
+        <wsdl:part element="tns:listPPSMSupportees" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="listPPSMSupporteesResponse">
+        <wsdl:part element="tns:listPPSMSupporteesResponse" name="part1" />
+    </wsdl:message>
+
+
+    <wsdl:message name="getSubscriptionBalanceMessage">
+        <wsdl:part element="tns:getSubscriptionBalance" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="getSubscriptionBundleBalancesMessage">
+        <wsdl:part element="tns:getSubscriptionBundleBalances" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="getSubscriptionPromotionStatusMessage">
+        <wsdl:part element="tns:getSubscriptionPromotionStatus" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSubscriptionsPPSMSupporterMessage">
+        <wsdl:part element="tns:updateSubscriptionsPPSMSupporter" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="resetVoicemailPasswordMessage">
+        <wsdl:part element="tns:resetVoicemailPassword" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="listSubscriptionCreationTemplatesMessage">
+        <wsdl:part element="tns:listSubscriptionCreationTemplates" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionsMessage">
+        <wsdl:part element="tns:listSubscriptions" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionClassesMessage">
+        <wsdl:part element="tns:listSubscriptionClasses" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionLevelsMessage">
+        <wsdl:part element="tns:listSubscriptionLevels" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="listSubscriptionTypesMessage">
+        <wsdl:part element="tns:listSubscriptionTypes" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="executeSubscriptionBalanceQueryMessage">
+        <wsdl:part element="tns:executeSubscriptionBalanceQuery" name="part1" />
+    </wsdl:message>    
+    
+    <wsdl:message name="updateSubscriptionWithStateTransitionMessage">
+        <wsdl:part element="tns:updateSubscriptionWithStateTransition" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="updateSubscriptionWithStateTransitionResponse">
+        <wsdl:part element="tns:updateSubscriptionWithStateTransitionResponse" name="part1" />
+    </wsdl:message>    
+    
+    <wsdl:message name="createSubscriptionBucketHistoryMessage">
+        <wsdl:part element="tns:createSubscriptionBucketHistory" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="createSubscriptionBucketHistoryResponse">
+        <wsdl:part element="tns:createSubscriptionBucketHistoryResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="listSubscriptionBucketHistoryMessage">
+        <wsdl:part element="tns:listSubscriptionBucketHistory" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="listSubscriptionBucketHistoryResponse">
+        <wsdl:part element="tns:listSubscriptionBucketHistoryResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="listDetailedSubscriptionBucketHistoryMessage">
+        <wsdl:part element="tns:listDetailedSubscriptionBucketHistory" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="listDetailedSubscriptionBucketHistoryResponse">
+        <wsdl:part element="tns:listDetailedSubscriptionBucketHistoryResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="getBucketHistoryMessage">
+        <wsdl:part element="tns:getBucketHistory" name="part1" />
+    </wsdl:message>    
+    <wsdl:message name="getBucketHistoryResponse">
+        <wsdl:part element="tns:getBucketHistoryResponse" name="part1" />
+    </wsdl:message>            
+
+    <wsdl:message name="getSubscriptionBundleBalancesWithSummaryMessage">
+        <wsdl:part element="tns:getSubscriptionBundleBalancesWithSummary" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="getSubscriptionBundleBalancesWithSummaryResponse">
+        <wsdl:part element="tns:getSubscriptionBundleBalancesWithSummaryResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="getSubscriptionDeviceTypeMessage">
+        <wsdl:part element="tns:getSubscriptionDeviceType" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="getSubscriptionDeviceTypeResponse">
+        <wsdl:part element="tns:getSubscriptionDeviceTypeResponse" name="part1" />
+    </wsdl:message>
+    
+    <!-- For Subscription Contract status -->
+    
+     <wsdl:message name="getSubscriptionContractStatusMessage">
+        <wsdl:part element="tns:getSubscriptionContractStatus" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="getSubscriptionContractStatusResponse">
+        <wsdl:part element="tns:getSubscriptionContractStatusResponse" name="part1" />
+    </wsdl:message>
+
+
+    <wsdl:message name="getSubscriptionSecondaryBalanceMessage">
+        <wsdl:part element="tns:getSubscriptionSecondaryBalance" name="part1" />
+    </wsdl:message>
+
+    <wsdl:message name="getSubscriptionSecondaryBalanceResponse">
+        <wsdl:part element="tns:getSubscriptionSecondaryBalanceResponse" name="part1" />
+    </wsdl:message>
+	<wsdl:message name="getDetailedBalanceHistoryMessage">
+        <wsdl:part element="tns:getDetailedBalanceHistory" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="getDetailedBalanceHistoryResponse">
+        <wsdl:part element="tns:getDetailedBalanceHistoryResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="prepareMoveSubscriptionMessage">
+        <wsdl:part element="tns:prepareMoveSubscription" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="prepareMoveSubscriptionResponse">
+        <wsdl:part element="tns:prepareMoveSubscriptionResponse" name="part1" />
+    </wsdl:message>
+    
+    <wsdl:message name="completeMoveSubscriptionMessage">
+        <wsdl:part element="tns:completeMoveSubscription" name="part1" />
+    </wsdl:message>
+     <wsdl:message name="completeMoveSubscriptionResponse">
+        <wsdl:part element="tns:completeMoveSubscriptionResponse" name="part1" />
+    </wsdl:message>
+    
+        <!-- UMP-5263 -->
+    <wsdl:message name="listEntityBundleDetailsMessage">
+        <wsdl:part element="tns:listEntityBundleDetails" name="part1" />
+    </wsdl:message>
+    <wsdl:message name="listEntityBundleDetailsResponse">
+        <wsdl:part element="tns:listEntityBundleDetailsResponse" name="part1" />
+    </wsdl:message>
+    <!-- UMP-5263 -->
+    
+</wsdl:definitions>

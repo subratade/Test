@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2011/04"
+    xmlns:dtns="http://soap.crmapi.util.redknee.com/common/xsd/2008/08"
+    xmlns:subscription1_2dtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06"
+    xmlns:subscriptiondtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2011/01"
+    xmlns:subscriptionv1_1dtns="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04"
+    xmlns:ext1_0dtns="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06"
+    xmlns:extdtns="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2011/04"
+    xmlns:exns="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/xsd/2008/08" schemaLocation="Common_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/common/exception/xsd/2008/08" schemaLocation="Common_fault_types_1_0.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2011/01" schemaLocation="Subscriptions_types_2_0.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2010/06" schemaLocation="Subscriptions_types_1_2.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/xsd/2009/04" schemaLocation="Subscriptions_types_1_1.xsd" />
+    <xs:import namespace="http://soap.crmapi.util.redknee.com/subscriptions/extensions/xsd/2010/06" schemaLocation="SubscriptionExtensions_types_1_0.xsd" />
+    
+    <xs:simpleType name="MultiSimChargeType">
+        <xs:restriction base="xs:long">
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>Per-Service</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Per-SIM</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="SubscriptionExtension" type="extdtns:SubscriptionExtension" />
+    <xs:complexType name="SubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseSubscriptionExtension">
+                <xs:choice minOccurs="0" maxOccurs="1">
+                    <xs:sequence>
+                        <xs:element name="ppsmSupportee" nillable="true" minOccurs="0" type="extdtns:PPSMSupporteeSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="ppsmSupporter" nillable="true" minOccurs="0" type="ext1_0dtns:PPSMSupporterSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="dualBalance" nillable="true" minOccurs="0" type="ext1_0dtns:DualBalanceSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="multiSim" nillable="true" minOccurs="0" type="extdtns:MultiSimSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="fixedStopPricePlan" nillable="true" minOccurs="0" type="extdtns:FixedStopPricePlanSubscriptionExtension" />
+                    </xs:sequence>                    
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="ReadOnlySubscriptionExtension" type="extdtns:ReadOnlySubscriptionExtension" />
+    <xs:complexType name="ReadOnlySubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseReadOnlySubscriptionExtension">
+                <xs:choice minOccurs="0" maxOccurs="1">
+                    <xs:sequence>
+                        <xs:element name="ppsmSupportee" nillable="true" minOccurs="0" type="extdtns:ReadOnlyPPSMSupporteeSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="ppsmSupporter" nillable="true" minOccurs="0" type="ext1_0dtns:ReadOnlyPPSMSupporterSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="dualBalance" nillable="true" minOccurs="0" type="ext1_0dtns:ReadOnlyDualBalanceSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="multiSim" nillable="true" minOccurs="0" type="extdtns:ReadOnlyMultiSimSubscriptionExtension" />
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element name="fixedStopPricePlan" nillable="true" minOccurs="0" type="extdtns:ReadOnlyFixedStopPricePlanSubscriptionExtension" />
+                    </xs:sequence>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="MultiSimSubscriptionExtensionReference" type="extdtns:MultiSimSubscriptionExtensionReference" />
+    <xs:complexType name="MultiSimSubscriptionExtensionReference">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseSubscriptionExtensionReference">
+                <xs:sequence>
+                    <xs:element name="auxiliaryServiceId" nillable="true" minOccurs="0" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="FixedStopPricePlanSubscriptionExtensionReference" type="extdtns:FixedStopPricePlanSubscriptionExtensionReference" />
+    <xs:complexType name="FixedStopPricePlanSubscriptionExtensionReference">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseSubscriptionExtensionReference">
+                <xs:sequence>
+                    <xs:element name="fixedStop" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="balanceExpiry" nillable="true" minOccurs="0" type="xs:dateTime" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>    
+    
+    <xs:element name="MutableMultiSimSubscriptionExtension" type="extdtns:MutableMultiSimSubscriptionExtension" />
+    <xs:complexType name="MutableMultiSimSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="subscription1_2dtns:BaseMutableSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="packageRefs" nillable="true" minOccurs="0" maxOccurs="unbounded" type="extdtns:PackageReference" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name="MutableFixedStopPricePlanSubscriptionExtension" type="extdtns:MutableFixedStopPricePlanSubscriptionExtension" />
+    <xs:complexType name="MutableFixedStopPricePlanSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="subscription1_2dtns:BaseMutableSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="fixedStop" nillable="true" minOccurs="0" type="xs:dateTime" />
+                    <xs:element name="balanceExpiry" nillable="true" minOccurs="0" type="xs:dateTime" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="PackageReference" type="extdtns:PackageReference" />
+    <xs:complexType name="PackageReference">
+        <xs:sequence>
+            <xs:element name="packageID" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="imsi" nillable="true" minOccurs="0" type="xs:string" />
+            <xs:element name="msisdn" nillable="true" minOccurs="0" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="MultiSimSubscriptionExtension" type="extdtns:MultiSimSubscriptionExtension" />
+    <xs:complexType name="MultiSimSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:MutableMultiSimSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="auxiliaryServiceId" nillable="true" minOccurs="0" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="FixedStopPricePlanSubscriptionExtension" type="extdtns:FixedStopPricePlanSubscriptionExtension" />
+    <xs:complexType name="FixedStopPricePlanSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:MutableFixedStopPricePlanSubscriptionExtension"/>
+        </xs:complexContent>
+    </xs:complexType>    
+    
+    <xs:element name="ReadOnlyMultiSimSubscriptionExtension" type="extdtns:ReadOnlyMultiSimSubscriptionExtension" />
+    <xs:complexType name="ReadOnlyMultiSimSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:MultiSimSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="maxNumSIMs" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="chargeMode" nillable="true" minOccurs="0" type="extdtns:MultiSimChargeType" />
+                    <xs:element name="charge" nillable="true" minOccurs="0" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="ReadOnlyFixedStopPricePlanSubscriptionExtension" type="extdtns:ReadOnlyFixedStopPricePlanSubscriptionExtension" />
+    <xs:complexType name="ReadOnlyFixedStopPricePlanSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:FixedStopPricePlanSubscriptionExtension"/>
+        </xs:complexContent>
+    </xs:complexType>    
+    
+    <xs:element name="DualBalanceSubscriptionExtensionReference" type="extdtns:DualBalanceSubscriptionExtensionReference" />
+    <xs:complexType name="DualBalanceSubscriptionExtensionReference">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseSubscriptionExtensionReference" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="PPSMSupporteeSubscriptionExtensionReference" type="extdtns:PPSMSupporteeSubscriptionExtensionReference" />
+    <xs:complexType name="PPSMSupporteeSubscriptionExtensionReference">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseSubscriptionExtensionReference">
+                <xs:sequence>
+                    <xs:element name="appliedChargingTemplate" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="appliedScreeningTemplate" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="supporterRef" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="MutablePPSMSupporteeSubscriptionExtension" type="extdtns:MutablePPSMSupporteeSubscriptionExtension" />
+    <xs:complexType name="MutablePPSMSupporteeSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="subscription1_2dtns:BaseMutableSubscriptionExtension">
+                <xs:sequence>
+                    <xs:element name="supporterRef" nillable="true" minOccurs="0" type="subscriptiondtns:SubscriptionReference" />
+                    <xs:element name="appliedChargingTemplate" nillable="true" minOccurs="0" type="xs:long" />
+                    <xs:element name="appliedScreeningTemplate" nillable="true" minOccurs="0" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+        <xs:element name="PPSMSupporteeSubscriptionExtension" type="extdtns:PPSMSupporteeSubscriptionExtension" />
+    <xs:complexType name="PPSMSupporteeSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:MutablePPSMSupporteeSubscriptionExtension" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="ReadOnlyPPSMSupporteeSubscriptionExtension" type="extdtns:ReadOnlyPPSMSupporteeSubscriptionExtension" />
+    <xs:complexType name="ReadOnlyPPSMSupporteeSubscriptionExtension">
+        <xs:complexContent>
+            <xs:extension base="extdtns:PPSMSupporteeSubscriptionExtension" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="PPSMSupporterSubscriptionExtensionReference" type="extdtns:PPSMSupporterSubscriptionExtensionReference" />
+    <xs:complexType name="PPSMSupporterSubscriptionExtensionReference">
+        <xs:complexContent>
+            <xs:extension base="subscriptiondtns:BaseSubscriptionExtensionReference">
+                <xs:sequence>
+                    <xs:element name="screeningTemplates" nillable="true" minOccurs="0" maxOccurs="unbounded" type="xs:long" />
+                    <xs:element name="chargingTemplates" nillable="true" minOccurs="0" maxOccurs="unbounded" type="xs:long" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

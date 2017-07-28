@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://pcom.redknee.com/om/itemType"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pcom.redknee.com/om/itemType"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<element name="moveSoldOffering" type="tns:moveSoldOffering">
+		<annotation>
+			<documentation>The order data for the resumeSubscription order item type.</documentation>
+		</annotation>
+	</element>
+	<complexType name="moveSoldOffering">
+		<annotation>
+			<documentation>The order data for the resumeSubscription order item	type.</documentation>
+		</annotation>
+		<sequence>
+			<element name="spid"  minOccurs="0" type="xsd:int" />
+           	<element name="balanceCarryOver"  minOccurs="0" default="false" type="xsd:boolean" />
+           	<element name="oldBAN"  minOccurs="0" type="xsd:string" />
+			<element name="newBAN"  minOccurs="0" type="xsd:string" />
+			<element name="oldSubscriberID"  minOccurs="0" type="xsd:string" />
+			<element name="newSubscriberID"  minOccurs="0" type="xsd:string" />
+			<element name="moveReferenceId"  minOccurs="0" type="xsd:long" />
+		</sequence>
+	</complexType>	
+</schema>
